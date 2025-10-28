@@ -5,7 +5,6 @@ import {
   Users,
   Star,
 } from "lucide-react"
-import { Link } from "react-router-dom"
 
 const featuredCourses = [
     {
@@ -48,28 +47,29 @@ const featuredCourses = [
 
 const FeaturedCourses = () => {
   return (
-    <section id="courses" className="px-8 py-24">
-    <div className="max-w-7xl mx-auto">
-      <div className="flex items-center justify-between mb-12">
-        <div>
-          <h2 className="text-4xl font-bold mb-2">Featured Courses</h2>
-          <p className="text-muted-foreground">Curated learning paths for every skill level</p>
+    <section id="courses" className="px-0 md:px-8 py-20">
+    <div className="mx-auto">
+      <div className="flex items-center justify-center mb-12">
+        <div className="text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Explore Our Courses
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Discover comprehensive Web3 courses designed by industry experts
+          </p>
         </div>
-        <Link to="/courses">
-          <Button variant="outline">View All Courses</Button>
-        </Link>
       </div>
       
-      <div className="flex space-x-6 overflow-x-auto pb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 w-full pb-6">
         {[...featuredCourses, ...featuredCourses].map((course, index) => (
           <Card 
             key={`${course.id}-${index}`}
-            className="min-w-[350px] bg-card-gradient border border-border/30 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-glow cursor-pointer"
+            className="w-full md:min-w-[300px] bg-card-gradient border border-border/30 hover:border-primary/60 hover:shadow-lg hover:scale-105 transition-all duration-300"
           >
             <CardHeader>
               <div className="flex items-center justify-between mb-4">
                 <div className="text-4xl">{course.image}</div>
-                <Badge>{course.level}</Badge>
+                <Badge className="text-secondary">{course.level}</Badge>
               </div>
               <CardTitle className="text-xl">{course.title}</CardTitle>
               <CardDescription>{course.description}</CardDescription>

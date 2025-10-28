@@ -1,5 +1,4 @@
 import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import {
     Users,
     Award,
@@ -7,7 +6,6 @@ import {
     Zap,
     Shield,
     TrendingUp,
-    Sparkles,
   } from "lucide-react"
 
 const features = [
@@ -45,12 +43,12 @@ const features = [
 
 const Features = () => {
   return (
-    <section id="about" className="py-24 bg-muted/10">
+    <section id="about" className="py-20 p-3 bg-muted/10 bg-linear-to-br from-primary/5 via-transparent to-accent/5 ">
       <div className="text-center mb-16">
-        <Badge className="bg-primary/10 text-primary border-primary/30 mb-6 text-sm px-4 py-2">
+        {/* <Badge className="bg-primary/10 text-primary border-primary/30 mb-6 text-sm px-4 py-2">
           <Sparkles className="w-4 h-4 mr-2" />
           Platform Advantages
-        </Badge>
+        </Badge> */}
         <h2 className="text-4xl md:text-5xl font-bold mb-4">
           Why Choose Us?
         </h2>
@@ -60,19 +58,19 @@ const Features = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {features.map((feature, i) => (
           <Card
             key={i}
-            className="group p-8 bg-card border border-border/30 hover:border-primary/60 hover:shadow-lg transition-all duration-500"
+            className="flex flex-col items-start group p-4 md:p-8 bg-card border border-border/30 hover:border-primary/60 hover:shadow-lg hover:scale-y-105 transition-all duration-500"
           >
-            <div className="w-14 h-14 mb-6 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
+            <div className="w-7 h-7 md:w-14 md:h-14 mb-6 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
               {feature.icon}
             </div>
-            <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+            <h3 className="text-left text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
               {feature.title}
             </h3>
-            <p className="text-muted-foreground">{feature.description}</p>
+            <p className="text-left text-muted-foreground">{feature.description}</p>
           </Card>
         ))}
       </div>

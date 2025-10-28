@@ -1,13 +1,9 @@
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { AnimatedCounter } from "@/components/AnimatedCounter"
-import { Card, CardContent } from "@/components/ui/card"
 import { Link } from "react-router-dom"
 import {
   PlayCircle,
-  Star,
   ArrowRight,
-  Sparkles,
 } from "lucide-react"
 
 // const featuredCourses = [
@@ -51,14 +47,14 @@ import {
 
 const Hero = () => {
   return (
-    <section id="home" className="pt-10 pb-20 md:pb-32 relative">
+    <section id="home" className="py-20 relative">
           <div className="flex flex-col gap-16 items-center justify-center">
             {/* Left Text */}
             <div className="space-y-8">
-              <Badge className="bg-primary/10 text-primary border-primary/30 w-fit">
+              {/* <Badge className="bg-primary/10 text-primary border-primary/30 w-fit">
                 <Sparkles className="w-4 h-4 mr-2" />
                 Revolutionary Platform
-              </Badge>
+              </Badge> */}
 
               <h1 className="text-5xl capitalize md:text-7xl lg:text-[70px]! font-extrabold leading-tight">
                 <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
@@ -66,7 +62,7 @@ const Hero = () => {
                 </span>
               </h1>
 
-              <p className="text-lg md:text-2xl text-muted-foreground max-w-lg leading-relaxed">
+              <p className="text-lg md:text-2xl text-muted-foreground max-w-xl leading-relaxed">
                 Master blockchain, smart contracts, and DeFi through immersive,
                 hands-on learning experiences.
               </p>
@@ -97,25 +93,25 @@ const Hero = () => {
                   <AnimatedCounter
                     end={10000}
                     suffix="+"
-                    className="text-3xl font-bold text-primary"
+                    className="text-xl md:text-3xl font-bold text-primary"
                   />
-                  <p className="text-sm text-muted-foreground">Builders</p>
+                  <p className="text-xs md:text-sm text-muted-foreground">Builders</p>
                 </div>
                 <div>
                   <AnimatedCounter
                     end={50}
                     suffix="+"
-                    className="text-3xl font-bold text-accent"
+                    className="text-xl md:text-3xl font-bold text-accent"
                   />
-                  <p className="text-sm text-muted-foreground">Courses</p>
+                  <p className="text-xs md:text-sm text-muted-foreground">Courses</p>
                 </div>
                 <div>
                   <AnimatedCounter
                     end={95}
                     suffix="%"
-                    className="text-3xl font-bold text-secondary"
+                    className="text-xl md:text-3xl font-bold text-secondary"
                   />
-                  <p className="text-sm text-muted-foreground">Success</p>
+                  <p className="text-xs md:text-sm text-muted-foreground">Success</p>
                 </div>
               </div>
             </div>

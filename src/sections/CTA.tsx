@@ -4,32 +4,31 @@ import { ArrowRight } from "lucide-react"
 
 const CTA = () => {
   return (
-    <section id="contact" className="py-28 text-center relative">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
+    <section id="contact" className="py-28 h-[480px] md:h-full mb-20 bg-linear-to-r from-primary to-accent bg-clip-text text-transparent text-center relative">
+
+       <div className="absolute mx-auto w-full inset-0 bg-linear-to-r from-primary to-accent opacity-10 rounded-3xl lg:mx-8" />
+
+        <div className="relative z-10 px-10">
+          <h2 className="text-3xl md:text-5xl font-bold mb-8 bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
             Ready to Transform Your Career?
           </h2>
-          <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
+
+          <p className="text-lg md:text-xl text-secondary mb-12 max-w-2xl mx-auto">
             Join thousands of developers building the decentralized future.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <div className="flex items-center justify-center">
             <Link to="/courses">
               <Button
                 size="lg"
-                className="bg-primary hover:bg-primary/90 shadow-lg text-lg px-10 py-6"
+                className="bg-primary-foreground! text-black! hover:bg-primary-foreground/95! shadow-lg text-base! md:text-lg! px-2! md:px-8! py-6"
               >
                 Start Your Journey
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            <Button
-              size="lg"
-              variant="outline"
-              className="text-lg px-10 py-6 border-primary/30"
-            >
-              Schedule Demo
-            </Button>
           </div>
+        </div>
       </section>
   )
 }
