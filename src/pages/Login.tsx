@@ -1,11 +1,13 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useNavigate } from "react-router-dom"
 import MaxWidthWrapper from "@/components/MaxWidthWrapper"
 import { Loader2 } from "lucide-react"
+import {toast} from "sonner"
+import { useAuth } from "@/context/AuthContext"
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("")
@@ -14,6 +16,12 @@ const Login: React.FC = () => {
   const [error, setError] = useState<string | null>(null)
 
   const navigate = useNavigate()
+  const {login} = useAuth()
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -23,7 +31,8 @@ const Login: React.FC = () => {
     try {
       // Simulate async login
       await new Promise((res) => setTimeout(res, 1200))
-      alert("Logged in successfully!")
+      login()
+      toast.success("Logged in successfully!")
     } catch (err) {
       setError("Invalid credentials. Please try again.")
     } finally {

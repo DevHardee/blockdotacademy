@@ -1,14 +1,14 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useNavigate } from "react-router-dom"
 import MaxWidthWrapper from "@/components/MaxWidthWrapper"
 import { Loader2 } from "lucide-react"
+import { toast } from "sonner" 
 
 const SignUp: React.FC = () => {
-  const navigate = useNavigate()
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
@@ -16,13 +16,20 @@ const SignUp: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+  
+
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
     setLoading(true)
     try {
       await new Promise((res) => setTimeout(res, 1200)) 
-      alert("Account created successfully!")
+      toast.success("Account created successfully!")
       navigate("/dashboard")
     } catch {
       setError("Failed to sign up. Please try again.")
