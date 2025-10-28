@@ -2,7 +2,7 @@ import { FaLinkedin, FaGithub, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="text-accent text-sm md:text-lg py-6 text-center">
+    <footer className="text-center lg:flex lg:mx-2 lg:items-center lg:justify-between text-accent text-sm md:text-lg py-6">
       <p>&copy; {new Date().getFullYear()} Blockdot Academy. All rights reserved.</p>
 
       {/* Social Links */}
@@ -24,7 +24,7 @@ const Footer = () => {
           <FaGithub />
         </a>
         <a
-          href="/"
+          href="/https://x.com/blockdotacademy"
           target="_blank"
           rel="noopener noreferrer"
           className="text-secondary! hover:text-accent transition-colors"

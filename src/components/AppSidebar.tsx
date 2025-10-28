@@ -19,8 +19,11 @@ import {
   User,
   Home,
   ChevronRight,
+  ArrowRightToLine
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Button } from "./ui/button";
+import { useAuth } from "@/context/AuthContext";
 
 const navigation = [
   { title: "Home", url: "/", icon: Home },
@@ -33,6 +36,8 @@ const navigation = [
 export function AppSidebar() {
   const location = useLocation();
   const currentPath = location.pathname;
+
+  const {logout} = useAuth()
 
   const isActive = (path: string) =>
     path === "/" ? currentPath === "/" : currentPath.startsWith(path);
@@ -95,8 +100,14 @@ export function AppSidebar() {
 
       {/* Footer */}
       <SidebarFooter className="border-t border-sidebar-border/40 p-4 mt-auto">
-        <div className="text-left">
+        <div className="flex items-center justify-between">
           <ThemeToggle />
+          <Button 
+            onClick={logout}
+            className="flex items-center gap-2">
+             <p>Logout</p>
+            <ArrowRightToLine/>
+          </Button>
         </div>
       </SidebarFooter>
       </Sidebar>
