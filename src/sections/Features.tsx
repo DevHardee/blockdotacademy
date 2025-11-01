@@ -43,7 +43,8 @@ const features = [
 
 const Features = () => {
   return (
-    <section id="about" className="py-20 p-3 bg-muted/10 bg-linear-to-br from-primary/5 via-transparent to-accent/5 ">
+    <section id="about" className="py-10 md:py-20 p-3 flex justify-center bg-muted/10 bg-linear-to-br from-primary/5 via-transparent to-accent/5">
+      <div className="max-w-7xl">
       <div className="text-center mb-16">
         {/* <Badge className="bg-primary/10 text-primary border-primary/30 mb-6 text-sm px-4 py-2">
           <Sparkles className="w-4 h-4 mr-2" />
@@ -73,6 +74,7 @@ const Features = () => {
             <p className="text-left text-muted-foreground">{feature.description}</p>
           </Card>
         ))}
+      </div>
       </div>
   </section>
   )

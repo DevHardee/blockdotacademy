@@ -47,8 +47,8 @@ import {
 
 const Hero = () => {
   return (
-    <section id="home" className="py-20 relative">
-          <div className="flex flex-col gap-16 items-center justify-center">
+    <section id="home" className="py-10 md:py-20 relative">
+          <div className="flex flex-col p-3 gap-16 items-center justify-center">
             {/* Left Text */}
             <div className="space-y-8">
               {/* <Badge className="bg-primary/10 text-primary border-primary/30 w-fit">
@@ -56,16 +56,18 @@ const Hero = () => {
                 Revolutionary Platform
               </Badge> */}
 
-              <h1 className="text-5xl capitalize md:text-7xl lg:text-[70px]! font-extrabold leading-tight">
-                <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
-                  Build the Future
-                </span>
-              </h1>
+              <div className="flex flex-col items-center justify-center">
+                <h1 className="text-5xl! capitalize md:text-7xl lg:text-[70px]! font-extrabold leading-tight">
+                  <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
+                    Build the Future
+                  </span>
+                </h1>
 
-              <p className="text-lg md:text-2xl text-muted-foreground max-w-xl leading-relaxed">
-                Master blockchain, smart contracts, and DeFi through immersive,
-                hands-on learning experiences.
-              </p>
+                <p className="text-lg md:text-2xl text-muted-foreground max-w-xl leading-relaxed">
+                  Master blockchain, smart contracts, and DeFi through immersive,
+                  hands-on learning experiences.
+                </p>
+              </div>
 
               <div className="flex items-center justify-center flex-col md:flex-row gap-4">
                 <Link to="/courses">

@@ -47,8 +47,8 @@ const featuredCourses = [
 
 const FeaturedCourses = () => {
   return (
-    <section id="courses" className="px-0 md:px-8 py-20">
-    <div className="mx-auto">
+    <section id="courses" className="flex justify-center px-3 md:px-8 py-10 md:py-20">
+    <div className="max-w-7xl">
       <div className="flex items-center justify-center mb-12">
         <div className="text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -68,7 +68,7 @@ const FeaturedCourses = () => {
           >
             <CardHeader>
               <div className="flex items-center justify-between mb-4">
-                <div className="text-4xl">{course.image}</div>
+                <div className="text-xl md:text-4xl">{course.image}</div>
                 <Badge className="text-secondary">{course.level}</Badge>
               </div>
               <CardTitle className="text-xl">{course.title}</CardTitle>

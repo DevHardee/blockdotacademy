@@ -4,9 +4,9 @@ import { ArrowRight } from "lucide-react"
 
 const CTA = () => {
   return (
-    <section id="contact" className="py-28 h-[480px] md:h-full mb-20 bg-linear-to-r from-primary to-accent bg-clip-text text-transparent text-center relative">
+    <section id="contact" className="py-14 md:py-28 h-[420px] md:h-full mb-20 bg-linear-to-r from-primary to-accent bg-clip-text text-transparent text-center relative">
 
-       <div className="absolute mx-auto w-full inset-0 bg-linear-to-r from-primary to-accent opacity-10 rounded-3xl lg:mx-8" />
+       <div className="absolute mx-auto w-full inset-0 bg-linear-to-r from-primary to-accent opacity-10" />
 
         <div className="relative z-10 px-10">
           <h2 className="text-3xl md:text-5xl font-bold mb-8 bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">

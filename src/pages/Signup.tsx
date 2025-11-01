@@ -40,7 +40,7 @@ const SignUp: React.FC = () => {
 
   return (
     <MaxWidthWrapper>
-      <div className="flex flex-col items-center justify-center min-h-[80vh] pt-1 md:pt-5 pb-16">
+      <div className="flex flex-col items-center justify-center min-h-screen pt-1 md:pt-5 pb-16">
         {/* Header */}
         <div className="text-center mb-6 md:mb-10">
           <h1 className="text-3xl! md:text-4xl! lg:text-5xl! font-semibold text-foreground">

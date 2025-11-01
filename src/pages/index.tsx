@@ -22,7 +22,7 @@ const Home = () => {
   }, [location]);
 
   return (
-    <div className="relative bg-background text-foreground">
+    <div className="relative flex flex-col justify-center w-full bg-background text-foreground">
       {/* Hero Section */}
       <Hero/>
 
