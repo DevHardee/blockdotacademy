@@ -8,6 +8,7 @@ import SignUp from './pages/Signup'
 import NotFound from './pages/NotFound'
 import { Toaster } from "sonner"
 import { AuthProvider, useAuth } from './context/AuthContext'
+import ComingSoon from './sections/ComingSoon'
 
 const AppRoutes = () => {
   const { isAuthenticated } = useAuth()
@@ -18,6 +19,10 @@ const AppRoutes = () => {
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/" element={<Navigate to="/" replace />} />
+          <Route path="/my-courses" element={<ComingSoon />} />
+          <Route path="/community" element={<ComingSoon />} />
+          <Route path="/leaderboard" element={<ComingSoon />} />
+          <Route path="/profile" element={<ComingSoon />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Toaster position="top-right" richColors closeButton theme="system" />

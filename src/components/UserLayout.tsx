@@ -3,6 +3,7 @@ import { SidebarProvider, SidebarTrigger, useSidebar } from "@/components/ui/sid
 import { AppSidebar } from "@/components/AppSidebar";
 import { cn } from "@/lib/utils";
 import useIsMobile from "@/hooks/useIsMobile";
+import Footer from "./Footer";
 
 interface UserLayoutProps {
   children: ReactNode;
@@ -42,6 +43,8 @@ function LayoutContent({ children }: UserLayoutProps) {
         <main className="flex-1">
           <div className="w-full h-full">{children}</div>
         </main>
+
+        <Footer/>
       </div>
     </div>
   );

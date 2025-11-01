@@ -97,7 +97,7 @@ const Hero = () => {
                     suffix="+"
                     className="text-xl md:text-3xl font-bold text-primary"
                   />
-                  <p className="text-xs md:text-sm text-muted-foreground">Builders</p>
+                  <p className="text-xs md:text-sm ml-1 text-muted-foreground">Builders</p>
                 </div>
                 <div>
                   <AnimatedCounter

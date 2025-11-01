@@ -27,7 +27,7 @@ import { useAuth } from "@/context/AuthContext";
 
 const navigation = [
   { title: "Home", url: "/", icon: Home },
-  { title: "Courses", url: "/courses", icon: BookOpen },
+  { title: "My Courses", url: "/my-courses", icon: BookOpen },
   { title: "Community", url: "/community", icon: Users },
   { title: "Leaderboard", url: "/leaderboard", icon: Trophy },
   { title: "Profile", url: "/profile", icon: User },
@@ -73,7 +73,7 @@ export function AppSidebar() {
                       className={cn(
                         "group w-full flex items-center rounded-xl px-3 py-2 text-xs md:text-sm font-medium transition-colors",
                         active
-                          ? "bg-primary/20 text-primary border hover:bg-primary/30 border-primary/30 font-semibold!"
+                          ? "bg-primary/20 text-primary-foreground! border hover:bg-primary/30 border-primary/30 font-semibold!"
                           : "hover:bg-primary/10 text-white!"
                       )}
                     >
