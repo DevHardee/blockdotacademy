@@ -1,11 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 import animate from "tailwindcss-animate";
+import plugin from "tailwindcss/plugin";
 
 export default {
   darkMode: ["class"], 
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  safelist: [
+    "glow-primary",
+    "glow-accent",
+    "glow-success",
+    "hover:glow-primary",
+    "hover:glow-accent",
+    "hover:glow-success",
   ],
   theme: {
     extend: {
@@ -58,7 +67,7 @@ export default {
         secondary: "var(--shadow-secondary)",
         accent: "var(--shadow-accent)",
         card: "var(--shadow-card)",
-        glow: "var(--shadow-glow)",
+        glow: "0 0 6px var(--tw-shadow-color), 0 0 12px var(--tw-shadow-color), 0 0 24px var(--tw-shadow-color)",
       },
       backgroundImage: {
         "hero-gradient": "var(--hero-gradient)",
@@ -72,5 +81,30 @@ export default {
       },
     },
   },
-  plugins: [animate],
+  plugins: [
+    animate,
+    plugin(function ({ addUtilities, theme }) {
+      const glowUtilities = {
+        ".glow-primary": {
+          "--tw-shadow-color": "hsl(var(--primary))",
+          "box-shadow": theme("boxShadow.glow"),
+          "text-shadow": "0 0 6px hsl(var(--primary)), 0 0 12px hsl(var(--primary))",
+          transition: theme("transitionProperty.glow"),
+        },
+        ".glow-accent": {
+          "--tw-shadow-color": "hsl(var(--accent))",
+          "box-shadow": theme("boxShadow.glow"),
+          "text-shadow": "0 0 6px hsl(var(--accent)), 0 0 12px hsl(var(--accent))",
+          transition: theme("transitionProperty.glow"),
+        },
+        ".glow-success": {
+          "--tw-shadow-color": "#22c55e", // Tailwind green-500
+          "box-shadow": theme("boxShadow.glow"),
+          "text-shadow": "0 0 6px #22c55e, 0 0 12px #22c55e",
+          transition: theme("transitionProperty.glow"),
+        },
+      };
+      addUtilities(glowUtilities, ["responsive", "hover"]);
+    }),
+  ],
 };
