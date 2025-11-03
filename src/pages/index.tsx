@@ -5,7 +5,7 @@ import Features from "@/sections/Features"
 import FeaturedCourses from "@/sections/FeaturedCourses"
 import CTA from "@/sections/CTA"
 
-const Home = () => {
+const Index = () => {
   const location = useLocation();
 
   useEffect(() => {
@@ -38,4 +38,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Index

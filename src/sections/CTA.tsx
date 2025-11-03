@@ -1,8 +1,20 @@
 import { Button } from "@/components/ui/button"
-import { Link } from "react-router-dom"
 import { ArrowRight } from "lucide-react"
+import { useNavigate } from "react-router-dom"
+import { useAuth } from "@/context/AuthContext"
 
 const CTA = () => {
+  const navigate = useNavigate()
+  const {isAuthenticated} = useAuth()
+
+  const handleAction = () => {
+    if(!isAuthenticated) {
+      navigate("/signup")
+      return
+    }
+    navigate("/my-courses")
+  }
+
   return (
     <section id="contact" className="py-14 md:py-28 h-[420px] md:h-full mb-20 bg-linear-to-r from-primary to-accent bg-clip-text text-transparent text-center relative">
 
@@ -18,15 +30,14 @@ const CTA = () => {
           </p>
 
           <div className="flex items-center justify-center">
-            <Link to="/courses">
-              <Button
-                size="lg"
-                className="bg-primary-foreground! text-black! hover:bg-primary-foreground/95! shadow-lg text-base! md:text-lg! px-2! md:px-8! py-6"
-              >
-                Start Your Journey
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
+            <Button
+              size="lg"
+              onClick={handleAction}
+              className="bg-primary-foreground! shadow-primary text-black! hover:bg-primary-foreground/95! shadow-lg text-base! md:text-lg! px-2! md:px-8! py-6"
+                >
+              {isAuthenticated ? "Continue Learning" : "Start Your Journey"}
+              <ArrowRight className="ml-2 h-5 w-5" />
+             </Button>
           </div>
         </div>
       </section>

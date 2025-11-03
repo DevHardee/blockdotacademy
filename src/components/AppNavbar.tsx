@@ -45,7 +45,7 @@ export function NavBar() {
             <h2 className="font-semibold text-base md:text-2xl bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">
               Blockdot
             </h2>
-            <p className="text-xs md:text-base text-muted-foreground">
+            <p className="text-xs text-shadow-accent md:text-base text-muted-foreground">
               Academy
             </p>
           </div>

@@ -12,7 +12,7 @@ interface UserLayoutProps {
 function LayoutContent({ children }: UserLayoutProps) {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
-  const isMobile = useIsMobile(768);
+  const isMobile = useIsMobile(1024);
 
   return (
     <div className="min-h-screen w-full bg-background">
@@ -35,7 +35,7 @@ function LayoutContent({ children }: UserLayoutProps) {
         )}
       >
         <div className="text-left">
-            <SidebarTrigger className="h-8 w-8 hover:bg-primary!" />
+            <SidebarTrigger className="h-8 w-8 hover:bg-primary!" title="Open/Close Sidebar"/>
         </div>
       </header>
 

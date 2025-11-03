@@ -5,6 +5,7 @@ import {
   Users,
   Star,
 } from "lucide-react"
+import { Link } from "react-router-dom"
 
 const featuredCourses = [
     {
@@ -64,7 +65,7 @@ const FeaturedCourses = () => {
         {[...featuredCourses, ...featuredCourses].map((course, index) => (
           <Card 
             key={`${course.id}-${index}`}
-            className="w-full md:min-w-[300px] bg-card-gradient border border-border/30 hover:border-primary/60 hover:shadow-lg hover:scale-105 transition-all duration-300"
+            className="w-full md:min-w-[300px] bg-card-gradient border border-border/30 hover:border-primary/60 hover:shadow-lg hover:scale-105 hover:shadow-card transition-all duration-300"
           >
             <CardHeader>
               <div className="flex items-center justify-between mb-4">
@@ -87,7 +88,9 @@ const FeaturedCourses = () => {
               </div>
               <div className="flex items-center justify-between">
                 <div className="text-2xl font-bold text-primary">{course.price}</div>
-                <Button size="sm">Enroll</Button>
+                <Link to={`/course/${course.id}`}>
+                  <Button size="sm">View</Button>
+                </Link>
               </div>
             </CardContent>
           </Card>

@@ -139,6 +139,14 @@
   --input: #2f2f2f;
   --ring: #0288d1;
 
+  --shadow-primary: 0 0 60px hsl(199 98% 45% / 0.6);       /* bright cyan-blue glow */
+  --shadow-secondary: 0 0 60px hsl(187 69% 65% / 0.4);    /* soft aqua glow */
+  --shadow-accent: 0 0 80px hsl(173 100% 35% / 0.5);      /* deep teal-green glow */
+  --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.7),
+               0 0 20px hsl(199 98% 45% / 0.15);        /* subtle layered depth */
+  --shadow-glow: 0 0 100px hsl(199 98% 45% / 0.3);        /* universal neon effect */
+
+
   /* Sidebar palette */
   --sidebar: #1c1c1c;
   --sidebar-foreground: #e5e5e5;
