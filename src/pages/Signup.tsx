@@ -27,16 +27,26 @@ const SignUp: React.FC = () => {
     e.preventDefault()
     setError(null)
     setLoading(true)
+  
     try {
-      await new Promise((res) => setTimeout(res, 1200)) 
+      await new Promise((res) => setTimeout(res, 1200))
+  
+      const newUser = {
+        name: `${firstName} ${lastName}`,
+        email,
+        bio: "",
+        avatar: "",
+      }
+  
+      localStorage.setItem("registeredUser", JSON.stringify(newUser))
       toast.success("Account created successfully!")
-      navigate("/dashboard")
+      navigate("/login")
     } catch {
       setError("Failed to sign up. Please try again.")
     } finally {
       setLoading(false)
     }
-  }
+  }  
 
   return (
     <MaxWidthWrapper>
@@ -54,7 +64,7 @@ const SignUp: React.FC = () => {
         {/* Sign Up Form */}
         <form
           onSubmit={handleSignUp}
-          className="w-full max-w-sm md:max-w-md flex flex-col gap-4 mt-0 md:mt-6"
+          className="p-3 w-full max-w-sm md:max-w-md flex flex-col gap-4 mt-0 md:mt-6"
         >
           <div className="flex flex-col md:flex-row gap-3">
             <Input

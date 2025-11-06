@@ -22,24 +22,33 @@ const Login: React.FC = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
   
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
     setLoading(true)
-
+  
     try {
-      // Simulate async login
       await new Promise((res) => setTimeout(res, 1200))
-      login()
+  
+      const storedUser = localStorage.getItem("registeredUser")
+      if (!storedUser) {
+        setError("No account found. Please sign up first.")
+        console.log("No account found.")
+        toast.error("Please sign up first.")
+        return
+      }
+  
+      const userData = JSON.parse(storedUser)
+      login(userData) 
       toast.success("Logged in successfully!")
     } catch (err) {
-      setError("Invalid credentials. Please try again.")
+      console.error(err)
+      setError("Login failed. Please try again.")
     } finally {
       setLoading(false)
     }
   }
-
+  
   return (
     <MaxWidthWrapper>
       <div className="flex flex-col items-center justify-center min-h-screen pt-5 pb-16">
@@ -56,7 +65,7 @@ const Login: React.FC = () => {
         {/* Form */}
         <form
           onSubmit={handleSubmit}
-          className="w-full max-w-sm md:max-w-md flex flex-col gap-4"
+          className="p-3 w-full max-w-sm md:max-w-md flex flex-col gap-4"
         >
           <Input
             type="email"
