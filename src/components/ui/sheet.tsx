@@ -55,6 +55,8 @@ function SheetContent({
   return (
     <SheetPortal>
       <SheetOverlay />
+      <SheetTitle/>
+      <SheetDescription/>
       <SheetPrimitive.Content
         data-slot="sheet-content"
         className={cn(
