@@ -13,7 +13,6 @@ const Home = () => {
       const sectionId = location.hash.replace("#", "");
       const section = document.getElementById(sectionId);
       if (section) {
-        // Delay a bit to ensure DOM has rendered fully
         setTimeout(() => {
           section.scrollIntoView({ behavior: "smooth" });
         }, 200);
