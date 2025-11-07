@@ -31,7 +31,7 @@ const CourseDetail = () => {
   }, []);
 
   return (
-    <div className={isAuthenticated ? "min-h-screen pt-20 bg-background" : "min-h-screen bg-background" }>
+    <div className={isAuthenticated ? "min-h-screen p-2 pt-20 bg-background" : "min-h-screen bg-background" }>
       {/* Breadcrumb */}
       <div className="border-b border-border bg-muted/30">
         <MaxWidthWrapper>

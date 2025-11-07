@@ -1,17 +1,17 @@
-"use client"
-
 import { useState, useEffect } from "react"
-import { Card, CardHeader, CardContent, CardTitle, CardDescription } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { Separator } from "@/components/ui/separator"
+import { Card } from "@/components/ui/card"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import {BookOpen, TrendingUp, Trophy, Award} from "lucide-react"
+
 import { useAuth } from "@/context/AuthContext"
 import { useNavigate } from "react-router-dom"
+import ProfileAchievements from "@/components/profile/ProfileAchievements"
+import ProfileActivity from "@/components/profile/ProfileActivity"
+import ProfileHeader from "@/components/profile/ProfileHeader"
+import ProfileCourses from "@/components/profile/ProfileCourses"
 
 const Profile = () => {
-  const { user, isAuthenticated, updateUser, logout } = useAuth()
+  const { user, isAuthenticated, updateUser } = useAuth()
   const navigate = useNavigate()
   const [editing, setEditing] = useState(false)
   const [formData, setFormData] = useState({
@@ -22,12 +22,12 @@ const Profile = () => {
   })
 
   useEffect(() => {
-    console.log("Auth state:", {isAuthenticated, user})
-
+    console.log("Auth check:", { isAuthenticated, user })
     if (!isAuthenticated) {
       navigate("/login")
       return
     }
+
     if (user) {
       console.log("Loaded user:", user)
       setFormData({
@@ -37,24 +37,25 @@ const Profile = () => {
         avatar: user.avatar || "",
       })
     } else {
-        console.log("No user found")
+      console.log("No user found in context.")
     }
   }, [user, isAuthenticated, navigate])
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+//   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//     setFormData({ ...formData, [e.target.name]: e.target.value })
+//   }
 
-  const handleSave = () => {
-    updateUser({
-      name: formData.name,
-      bio: formData.bio,
-      avatar: formData.avatar,
-    })
-    setEditing(false)
-  }
+//   const handleSave = () => {
+//     updateUser({
+//       name: formData.name,
+//       bio: formData.bio,
+//       avatar: formData.avatar,
+//     })
+//     setEditing(false)
+//   }
 
   if (!user) {
+    console.log("User not yet loaded – showing placeholder screen.")
     return (
       <div className="flex justify-center items-center min-h-[60vh]">
         <p className="text-muted-foreground">Loading your profile...</p>
@@ -62,101 +63,103 @@ const Profile = () => {
     )
   }
 
+  // Demo data
+  const stats = [
+    { label: "Courses Completed", value: 4, icon: BookOpen },
+    { label: "XP Points", value: 1250, icon: TrendingUp },
+    { label: "Rank", value: "#142", icon: Trophy },
+    { label: "Streak", value: "7 days", icon: Award },
+  ]
+
   return (
-    <div className="container mx-auto py-10 max-w-3xl">
-      <Card className="shadow-lg border-border">
-        <CardHeader className="flex flex-col sm:flex-row items-center gap-6">
-          <Avatar className="h-24 w-24 border-2 border-primary shadow-md">
-            <AvatarImage src={formData.avatar || "/default-avatar.png"} alt={formData.name} />
-            <AvatarFallback>{formData.name?.[0] || "U"}</AvatarFallback>
-          </Avatar>
-          <div className="text-center sm:text-left">
-            <CardTitle className="text-2xl font-semibold">{formData.name}</CardTitle>
-            <CardDescription className="text-muted-foreground">{formData.email}</CardDescription>
+    <div className="min-h-screen bg-background py-10 pt-20">
+    {/* Profile Header */}
+      <ProfileHeader/>
+
+      <section className="py-10">
+        <div className="max-w-6xl mx-auto px-6">
+          {/* Profile Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+            {stats.map((stat, i) => (
+              <Card key={i} className="text-center p-6 border border-border/30 hover:border-primary/60 hover:shadow-lg hover:scale-105 hover:shadow-card transition-all duration-300">
+                <stat.icon className="h-8 w-8 mx-auto mb-2 text-primary" />
+                <div className="text-2xl font-bold">{stat.value}</div>
+                <p className="text-sm text-muted-foreground">{stat.label}</p>
+              </Card>
+            ))}
           </div>
-        </CardHeader>
 
-        <Separator className="my-4" />
-
-        <CardContent className="space-y-6">
-          {!editing ? (
-            <>
-              <div>
-                <h3 className="font-medium text-muted-foreground mb-1">Bio</h3>
-                <p>{formData.bio || "No bio yet."}</p>
-              </div>
-
-              <div className="flex gap-3">
-                <Button variant="outline" onClick={() => setEditing(true)}>
-                  Edit Profile
-                </Button>
-                <Button variant="destructive" onClick={logout}>
-                  Log out
-                </Button>
-              </div>
-            </>
-          ) : (
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-              <div>
-                <Label htmlFor="name">Full Name</Label>
-                <Input
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Your full name"
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  disabled
-                  className="opacity-70 cursor-not-allowed"
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="bio">Bio</Label>
-                <Input
-                  id="bio"
-                  name="bio"
-                  value={formData.bio}
-                  onChange={handleChange}
-                  placeholder="Tell us a bit about yourself"
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="avatar">Avatar URL</Label>
-                <Input
-                  id="avatar"
-                  name="avatar"
-                  value={formData.avatar}
-                  onChange={handleChange}
-                  placeholder="Paste an image URL"
-                />
-              </div>
-
-              <div className="flex gap-3 pt-2">
-                <Button
-                  type="button"
-                  onClick={handleSave}
-                  className="bg-primary text-primary-foreground shadow-md"
+            {/* Profile Tabs */}
+          <Tabs defaultValue="courses" className="space-y-8">
+            <TabsList
+                 className="
+                    w-full
+                    h-full
+                    grid grid-cols-3
+                    border border-border
+                    rounded-lg
+                    bg-muted/20
+                    overflow-hidden
+                    text-xs md:text-base
+                    "
                 >
-                  Save Changes
-                </Button>
-                <Button variant="outline" onClick={() => setEditing(false)}>
-                  Cancel
-                </Button>
-              </div>
-            </form>
-          )}
-        </CardContent>
-      </Card>
+                <TabsTrigger
+                value="courses"
+                className="
+                    data-[state=active]:bg-primary/10
+                    data-[state=active]:text-primary
+                    data-[state=active]:font-semibold
+                    hover:bg-muted/40
+                    transition-all
+                    py-2
+                    text-sm md:text-base
+                "
+                >
+                My Courses
+                </TabsTrigger>
+
+                <TabsTrigger
+                value="achievements"
+                className="
+                    data-[state=active]:bg-primary/10
+                    data-[state=active]:text-primary
+                    data-[state=active]:font-semibold
+                    hover:bg-muted/40
+                    transition-all
+                    py-2
+                    text-sm md:text-base
+                    "
+                >
+                Achievement
+                </TabsTrigger>
+
+                <TabsTrigger
+                value="activity"
+                className="
+                    data-[state=active]:bg-primary/10
+                    data-[state=active]:text-primary
+                    data-[state=active]:font-semibold
+                    hover:bg-muted/40
+                    transition-all
+                    py-2
+                    text-sm md:text-base
+                     "
+                >
+                Activity
+                </TabsTrigger>
+            </TabsList>
+
+            {/* COURSES */}
+            <ProfileCourses/>
+
+            {/* ACHIEVEMENTS */}
+            <ProfileAchievements/>
+
+            {/* Activity */}
+            <ProfileActivity/>
+          </Tabs>
+        </div>
+      </section>
     </div>
   )
 }
