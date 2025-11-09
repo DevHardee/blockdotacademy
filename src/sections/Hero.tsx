@@ -43,7 +43,7 @@ const Hero = () => {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="text-base hover:text-black hover:bg-primary-foreground! ring ring-primary px-8 py-6 border-primary/30"
+                  className="text-base hover:text-black hover:bg-primary-foreground! ring ring-primary px-8 py-6 border-primary/30 transition-colors"
                 >
                   Watch Demo
                   <ArrowRight className="ml-2 h-5 w-5" />

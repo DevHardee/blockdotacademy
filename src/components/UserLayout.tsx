@@ -17,9 +17,9 @@ function LayoutContent({ children }: UserLayoutProps) {
   return (
     <div className="min-h-screen w-full bg-background">
       {/* Sidebar */}
-      <AppSidebar />
+      <AppSidebar/>
 
-      {/* Main Content Wrapper - pushes with sidebar */}
+      {/* Main Content */}
       <div
         className={cn(
           "flex flex-col min-h-screen transition-all duration-300 ease-in-out",
@@ -35,7 +35,7 @@ function LayoutContent({ children }: UserLayoutProps) {
         )}
       >
         <div className="text-left">
-            <SidebarTrigger className="h-8 w-8 hover:bg-primary!" title="Open/Close Sidebar"/>
+            <SidebarTrigger className="h-8 w-8 hover:bg-primary! text-black bg-gray-200! dark:bg-[#1c1c1c]! dark:text-white" title="Open/Close Sidebar"/>
         </div>
       </header>
 

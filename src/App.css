@@ -87,14 +87,15 @@
   --popover: #ffffff;
   --popover-foreground: #1c1c1c;
 
-  --primary: #0288d1; /* lightBlue 700 */
-  --primary-foreground: #ffffff;
+  --primary: #448aff; /* lightBlue 700 */
+  --primary-foreground: #4fc3f7;
 
-  --secondary: #4dd0e1; /* cyan 300 */
-  --secondary-foreground: #0a0a0a;
+
+  --secondary: #4dd0e1;
+  --secondary-foreground: #ffffff;
 
   --accent: #00897b; /* teal 600 */
-  --accent-foreground: #ffffff;
+  --accent-foreground: #1c1c1c;
 
   --muted: #e5e7eb;
   --muted-foreground: #6b7280;
@@ -102,6 +103,13 @@
   --border: #d1d5db;
   --input: #d1d5db;
   --ring: #0288d1;
+
+  --shadow-primary: 0 0 60px hsl(199 98% 45% / 0.6);       /* bright cyan-blue glow */
+  --shadow-secondary: 0 0 60px hsl(187 69% 65% / 0.4);    /* soft aqua glow */
+  --shadow-accent: 0 0 80px hsl(173 100% 35% / 0.5);      /* deep teal-green glow */
+  --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.7),
+               0 0 20px hsl(199 98% 45% / 0.15);        /* subtle layered depth */
+  --shadow-glow: 0 0 100px hsl(199 98% 45% / 0.3);  
 
   /* Sidebar palette */
   --sidebar: #ffffff;
