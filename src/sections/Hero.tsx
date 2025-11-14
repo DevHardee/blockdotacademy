@@ -4,27 +4,30 @@ import { Link } from "react-router-dom"
 import {
   PlayCircle,
   ArrowRight,
+  Sparkles,
 } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
 
 const Hero = () => {
   return (
     <section id="home" className="pt-10 pb-10 md:pb-10 md:py-20 relative">
           <div className="flex flex-col p-3 gap-16 items-center justify-center">
-            {/* Left Text */}
             <div className="space-y-8">
-              {/* <Badge className="bg-primary/10 text-primary border-primary/30 w-fit">
-                <Sparkles className="w-4 h-4 mr-2" />
-                Revolutionary Platform
-              </Badge> */}
 
               <div className="flex flex-col items-center justify-center">
+
+              <Badge className="bg-primary/10 text-white hover:bg-transparent! flex items-center! border-primary/30 w-fit px-3 py-2 rounded-full">
+                <Sparkles className="w-4 h-4 mr-2 text-primary" />
+                  Web3 Center of Learning
+              </Badge>
+
                 <h1 className="text-5xl! capitalize md:text-7xl lg:text-[70px]! font-extrabold leading-tight">
                   <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
-                    Build the Future
+                    Blockdot Academy
                   </span>
                 </h1>
 
-                <p className="text-lg md:text-2xl text-muted-foreground max-w-xl leading-relaxed">
+                <p className="text-lg md:text-2xl text-center text-muted-foreground max-w-xl leading-relaxed">
                   Master blockchain, smart contracts, and DeFi through immersive,
                   hands-on learning experiences.
                 </p>
