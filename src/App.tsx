@@ -8,6 +8,8 @@ import AdminDashboard from './pages/admin/Dashboard'
 import AdminCourses from './pages/admin/Courses'
 import AdminAnalytics from './pages/admin/Analytics'
 import AdminUsers from './pages/admin/Users'
+import AdminEditCourse from './pages/admin/EditCourse'
+import AdminAddCourse from './pages/admin/AddCourse'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import SignUp from './pages/Signup'
@@ -35,6 +37,8 @@ const AppRoutes = () => {
         <Routes>
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/courses" element={<AdminCourses />} />
+          <Route path="/admin/courses/:id/edit" element={<AdminEditCourse />} />
+          <Route path="/admin/courses/add" element={<AdminAddCourse />} />
           <Route path="/admin/analytics" element={<AdminAnalytics />} />
           <Route path="/admin/users" element={<AdminUsers />} />
           <Route path="/admin/*" element={<Navigate to="/admin/dashboard" replace />} />
