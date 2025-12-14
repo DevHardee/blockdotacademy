@@ -94,7 +94,7 @@ export function AdminSidebar() {
       </SidebarContent>
 
       <SidebarFooter className="border-t border-sidebar-border/40 p-4 mt-auto">
-        <div className="flex flex-col space-x-3">
+        <div className="flex flex-col space-y-3">
           {/* Simple mode dropdown */}
           <div className="relative">
             <select

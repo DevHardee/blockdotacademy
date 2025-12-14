@@ -1,9 +1,9 @@
 import './App.css'
 import { useEffect } from 'react'
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
-import { MainLayout } from './components/layouts/MainLayout'
-import { UserLayout } from './components/layouts/UserLayout'
-import { AdminLayout } from './components/layouts/AdminLayout'
+import { MainLayout } from './layouts/MainLayout'
+import { UserLayout } from './layouts/UserLayout'
+import { AdminLayout } from './layouts/AdminLayout'
 import AdminDashboard from './pages/admin/Dashboard'
 import AdminCourses from './pages/admin/Courses'
 import AdminAnalytics from './pages/admin/Analytics'
@@ -17,6 +17,7 @@ import NotFound from './pages/NotFound'
 import MyCourses from './pages/MyCourses'
 import CourseDetail from './pages/CourseDetail'
 import Profile from './pages/Profile'
+import Dashboard from './pages/Dashboard'
 import { Toaster } from "sonner"
 import { AuthProvider, useAuth } from './context/AuthContext'
 import ComingSoon from './sections/ComingSoon'
@@ -51,8 +52,8 @@ const AppRoutes = () => {
     return (
       <UserLayout>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/" element={<Navigate to="/profile" replace />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="/my-courses" element={<MyCourses />} />
           <Route path="/course/:id" element={<CourseDetail/>}/>
           <Route path="/community" element={<ComingSoon />} />

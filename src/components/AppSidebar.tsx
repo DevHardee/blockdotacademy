@@ -17,16 +17,16 @@ import {
   Users,
   Trophy,
   User,
-  Home,
   ChevronRight,
-  ArrowRightToLine
+  ArrowRightToLine,
+  LayoutDashboard
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import { useAuth } from "@/context/AuthContext";
 
 const navigation = [
-  { title: "Home", url: "/", icon: Home },
+  { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
   { title: "My Courses", url: "/my-courses", icon: BookOpen },
   { title: "Community", url: "/community", icon: Users },
   { title: "Leaderboard", url: "/leaderboard", icon: Trophy },
