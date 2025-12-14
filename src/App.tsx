@@ -11,8 +11,8 @@ import AdminUsers from './pages/admin/Users'
 import AdminEditCourse from './pages/admin/EditCourse'
 import AdminAddCourse from './pages/admin/AddCourse'
 import Home from './pages/Home'
-import Login from './pages/Login'
-import SignUp from './pages/Signup'
+import Login from './pages/auth/Login'
+import SignUp from './pages/auth/Signup'
 import NotFound from './pages/NotFound'
 import MyCourses from './pages/MyCourses'
 import CourseDetail from './pages/CourseDetail'
@@ -28,9 +28,9 @@ const AppRoutes = () => {
 
   useEffect(() => {
     if (isAuthenticated && !isAdmin) {
-      navigate("/profile", { replace: true })
+      navigate("/dashboard", { replace: true })
     }
-  }, [isAuthenticated, isAdmin])
+  }, [isAuthenticated, isAdmin, navigate])
 
   if (isAuthenticated && isAdmin) {
     return (

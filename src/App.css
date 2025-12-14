@@ -120,6 +120,10 @@
   --sidebar-accent-foreground: #0a0a0a;
   --sidebar-border: #d1d5db;
   --sidebar-ring: #0288d1;
+
+  /* Sonner toast colors - using primary color for success */
+  --success: var(--primary);
+  --success-foreground: var(--primary-foreground);
 }
 
 /* === DARK MODE === */
@@ -164,6 +168,10 @@
   --sidebar-accent-foreground: #ffffff;
   --sidebar-border: #2f2f2f;
   --sidebar-ring: #4dd0e1;
+
+  /* Sonner toast colors - using primary color for success */
+  --success: var(--primary);
+  --success-foreground: var(--primary-foreground);
 }
 
 /* Base layer */
@@ -174,5 +182,20 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Sonner toast customization - use primary color for success toasts */
+[data-sonner-toast][data-type="success"] {
+  background: var(--primary) !important;
+  color: #ffffff !important;
+  border-color: var(--primary) !important;
+}
+
+[data-sonner-toast][data-type="success"] [data-icon] {
+  color: #ffffff !important;
+}
+
+[data-sonner-toast][data-type="success"] [data-close-button] {
+  color: #ffffff !important;
 }
 

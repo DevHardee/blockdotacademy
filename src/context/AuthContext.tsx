@@ -59,8 +59,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       localStorage.setItem("isAdmin", "true");
     }
 
-    // keep previous behavior: navigate to profile or dashboard
-    navigate("/profile", { replace: true });
+    // navigate to dashboard
+    navigate("/dashboard", { replace: true });
   };
 
   const logout = () => {
@@ -89,7 +89,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     toast.success(`Switched to ${next ? "Admin" : "User"} mode`);
     // optionally navigate to admin dashboard when switching on
     if (next) navigate("/admin/dashboard", { replace: true });
-    else navigate("/profile", { replace: true });
+    else navigate("/dashboard", { replace: true });
   };
 
   return (
