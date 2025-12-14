@@ -45,7 +45,15 @@ import { Button } from "@/components/ui/button";
 export function ThemeToggle() {
   const [theme, setTheme] = useState(() => {
     if (typeof window !== "undefined") {
-      return localStorage.getItem("theme") || "dark";
+      const savedTheme = localStorage.getItem("theme") || "dark";
+      // Apply theme immediately to prevent flash of unstyled content
+      const root = document.documentElement;
+      if (savedTheme === "dark") {
+        root.classList.add("dark");
+      } else {
+        root.classList.remove("dark");
+      }
+      return savedTheme;
     }
     return "dark";
   });
