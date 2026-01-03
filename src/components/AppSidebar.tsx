@@ -74,7 +74,7 @@ export function AppSidebar() {
                         "group w-full flex items-center rounded-xl px-3 py-2 text-xs md:text-sm font-medium transition-colors",
                         active
                           ? "bg-primary/20 text-primary-foreground! border hover:bg-primary/30 border-primary/30 font-semibold!"
-                          : "hover:bg-primary/10 text-white!"
+                          : "hover:bg-primary/10 text-sidebar-foreground dark:text-white!"
                       )}
                     >
                       <Link to={item.url}>

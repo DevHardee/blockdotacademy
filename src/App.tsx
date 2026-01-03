@@ -1,6 +1,5 @@
 import './App.css'
-import { useEffect } from 'react'
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { MainLayout } from './layouts/MainLayout'
 import { UserLayout } from './layouts/UserLayout'
 import { AdminLayout } from './layouts/AdminLayout'
@@ -24,13 +23,6 @@ import ComingSoon from './sections/ComingSoon'
 
 const AppRoutes = () => {
   const { isAuthenticated, isAdmin } = useAuth()
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    if (isAuthenticated && !isAdmin) {
-      navigate("/dashboard", { replace: true })
-    }
-  }, [isAuthenticated, isAdmin, navigate])
 
   if (isAuthenticated && isAdmin) {
     return (

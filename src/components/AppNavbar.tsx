@@ -56,7 +56,7 @@ export function NavBar() {
               <div
                 key={id}
                 onClick={() => handleScrollOrNavigate(id)}
-                className="relative bg-none! py-2 text-sm font-medium text-secondary! hover:text-foreground transition-colors after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bg-primary after:bottom-0 after:left-0 after:transition-transform after:duration-500 after:origin-left hover:after:scale-x-100 cursor-pointer"
+                className="relative bg-none! py-2 text-sm font-medium text-foreground hover:text-primary transition-colors after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bg-primary after:bottom-0 after:left-0 after:transition-transform after:duration-500 after:origin-left hover:after:scale-x-100 cursor-pointer"
               >
                 {label}
               </div>

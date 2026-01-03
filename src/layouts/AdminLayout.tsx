@@ -35,7 +35,7 @@ function LayoutContent({ children }: AdminLayoutProps) {
         )}
       >
         <div className="text-left">
-            <SidebarTrigger className="h-8 w-8 hover:bg-primary! text-black bg-gray-200! dark:bg-[#1c1c1c]! dark:text-white" title="Open/Close Sidebar"/>
+            <SidebarTrigger className="h-8 w-8 hover:bg-primary! bg-background text-foreground hover:bg-accent hover:text-accent-foreground" title="Open/Close Sidebar"/>
         </div>
       </header>
 

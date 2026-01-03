@@ -48,7 +48,7 @@ export default {
         ring: "hsl(var(--ring))",
 
         // Optional sidebar palette
-        sidebar: "hsl(var(--sidebar-background))",
+        sidebar: "hsl(var(--sidebar))",
         "sidebar-foreground": "hsl(var(--sidebar-foreground))",
         "sidebar-primary": "hsl(var(--sidebar-primary))",
         "sidebar-primary-foreground": "hsl(var(--sidebar-primary-foreground))",
