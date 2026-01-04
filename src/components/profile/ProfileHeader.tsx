@@ -6,8 +6,7 @@ import { Progress } from "@/components/ui/progress"
 import { MapPin, Calendar, Edit3} from "lucide-react"
 
 const ProfileHeader = () => {
-    const [editing, setEditing] = useState(false)
-    const [formData, setFormData] = useState({
+    const [formData] = useState({
         name: "",
         email: "",
         bio: "",
@@ -36,7 +35,6 @@ const ProfileHeader = () => {
                 <Button
                   variant="outline"
                   className="lg:ml-auto"
-                  onClick={() => setEditing(true)}
                 >
                   <Edit3 className="h-4 w-4 mr-2" />
                   Edit Profile
