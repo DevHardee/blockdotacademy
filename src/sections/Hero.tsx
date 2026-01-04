@@ -16,7 +16,7 @@ const Hero = () => {
 
               <div className="flex flex-col items-center justify-center">
 
-              <Badge className="bg-primary/10 text-white hover:bg-transparent! flex items-center! border-primary/30 w-fit px-3 py-2 rounded-full">
+              <Badge className="bg-primary/10 text-foreground hover:bg-transparent! flex items-center! border-primary/30 w-fit px-3 py-2 rounded-full">
                 <Sparkles className="w-4 h-4 mr-2 text-primary" />
                   Web3 Center of Learning
               </Badge>
