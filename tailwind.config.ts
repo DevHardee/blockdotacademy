@@ -79,6 +79,16 @@ export default {
         smooth: "var(--transition-smooth)",
         glow: "var(--transition-glow)",
       },
+      animation: {
+        slide: "slide 30s linear infinite",
+        "slide-paused": "slide 30s linear infinite paused",
+      },
+      keyframes: {
+        slide: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+      },
     },
   },
   plugins: [
