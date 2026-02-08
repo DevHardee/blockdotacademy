@@ -34,9 +34,9 @@ export function NavBar() {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 border-b border-border/20 bg-card/60 backdrop-blur-xl">
+    <header className="fixed bg-background top-0 left-0 w-full z-50 border-b border-border/20 backdrop-blur-xl">
       <MaxWidthWrapper>
-        <div className="flex items-center justify-between h-16 px-4">
+        <div className="flex items-center justify-between h-16 px-4 bg-background">
           {/* Logo */}
           <div
             onClick={() => navigate("/")}
@@ -49,6 +49,11 @@ export function NavBar() {
               Academy
             </p>
           </div>
+          {/* <img
+            src="/assets/logo4.png"
+            alt="logo"
+            className="w-[20%] bg-background "
+          /> */}
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex md:gap-8 lg:gap-20">
