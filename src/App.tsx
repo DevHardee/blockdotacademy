@@ -16,7 +16,7 @@ import NotFound from './pages/NotFound'
 import MyCourses from './pages/MyCourses'
 import CourseDetail from './pages/CourseDetail'
 import Profile from './pages/Profile'
-import Dashboard from './pages/Dashboard'
+import UserDashboard from './pages/UserDashboard'
 import { Toaster } from "sonner"
 import { AuthProvider, useAuth } from './context/AuthContext'
 import ComingSoon from './sections/ComingSoon'
@@ -44,10 +44,10 @@ const AppRoutes = () => {
     return (
       <UserLayout>
         <Routes>
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<UserDashboard />} />
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="/my-courses" element={<MyCourses />} />
-          <Route path="/course/:id" element={<CourseDetail/>}/>
+          <Route path="/course/:id" element={<CourseDetail />} />
           <Route path="/community" element={<ComingSoon />} />
           <Route path="/leaderboard" element={<ComingSoon />} />
           <Route path="/profile" element={<Profile />} />
@@ -55,14 +55,14 @@ const AppRoutes = () => {
         </Routes>
       </UserLayout>
     )
-  } 
+  }
 
   return (
     <MainLayout>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Navigate to="/" replace />} />
-        <Route path="/course/:id" element={<CourseDetail/>}/>
+        <Route path="/course/:id" element={<CourseDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="*" element={<NotFound />} />

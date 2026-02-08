@@ -16,17 +16,21 @@ import {
   Star,
   CheckCircle2,
   PlayCircle,
+  Users,
 } from "lucide-react"
 import { useAuth } from "@/context/AuthContext"
 import { useNavigate, Link } from "react-router-dom"
 import { courses } from "@/lib/courses"
+import { motion } from "motion/react"
+import { ActionModal } from "@/components/ActionModal"
 
-const Dashboard = () => {
+const UserDashboard = () => {
   const { user, isAuthenticated } = useAuth()
   const navigate = useNavigate()
   const [enrolledCourseIds, setEnrolledCourseIds] = useState<number[]>([])
   const [activeStreak] = useState(7)
   const [todayProgress, setTodayProgress] = useState(0)
+  const [modalType, setModalType] = useState<"achievements" | "community" | "leaderboard" | "goals" | "study-plan" | null>(null)
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -65,30 +69,30 @@ const Dashboard = () => {
 
   // Stats
   const stats = [
-    { 
-      label: "Courses Enrolled", 
-      value: enrolledCourses.length, 
+    {
+      label: "Courses Enrolled",
+      value: enrolledCourses.length,
       icon: BookOpen,
       color: "text-blue-500",
       bgColor: "bg-blue-500/10"
     },
-    { 
-      label: "XP Points", 
-      value: "1,250", 
+    {
+      label: "XP Points",
+      value: "1,250",
       icon: TrendingUp,
       color: "text-primary",
       bgColor: "bg-primary/10"
     },
-    { 
-      label: "Current Streak", 
-      value: `${activeStreak} days`, 
+    {
+      label: "Current Streak",
+      value: `${activeStreak} days`,
       icon: Award,
       color: "text-orange-500",
       bgColor: "bg-orange-500/10"
     },
-    { 
-      label: "Global Rank", 
-      value: "#142", 
+    {
+      label: "Global Rank",
+      value: "#142",
       icon: Trophy,
       color: "text-yellow-500",
       bgColor: "bg-yellow-500/10"
@@ -105,6 +109,57 @@ const Dashboard = () => {
   // Learning goals
   const weeklyGoal = { current: 8, target: 12, unit: "lessons" }
   const monthlyGoal = { current: 25, target: 50, unit: "hours" }
+
+  const quickActions = [
+    {
+      title: "Browse Courses",
+      description: "Explore our library of Web3 courses",
+      icon: BookOpen,
+      link: "/my-courses",
+      color: "bg-blue-500/10 text-blue-500",
+      borderColor: "hover:border-blue-500/50",
+    },
+    {
+      title: "View Achievements",
+      description: "Check your badges and milestones",
+      icon: Trophy,
+      onClick: () => setModalType("achievements"),
+      color: "bg-yellow-500/10 text-yellow-500",
+      borderColor: "hover:border-yellow-500/50",
+    },
+    {
+      title: "Community Hub",
+      description: "Connect with fellow builders",
+      icon: Users,
+      onClick: () => setModalType("community"),
+      color: "bg-purple-500/10 text-purple-500",
+      borderColor: "hover:border-purple-500/50",
+    },
+    {
+      title: "Global Leaderboard",
+      description: "See how you rank globally",
+      icon: TrendingUp,
+      onClick: () => setModalType("leaderboard"),
+      color: "bg-emerald-500/10 text-emerald-500",
+      borderColor: "hover:border-emerald-500/50",
+    },
+    {
+      title: "Set Learning Goals",
+      description: "Define your weekly targets",
+      icon: Target,
+      onClick: () => setModalType("goals"),
+      color: "bg-primary/10 text-primary",
+      borderColor: "hover:border-primary/50",
+    },
+    {
+      title: "Personal Study Plan",
+      description: "Get a customized learning path",
+      icon: Calendar,
+      onClick: () => setModalType("study-plan"),
+      color: "bg-orange-500/10 text-orange-500",
+      borderColor: "hover:border-orange-500/50",
+    },
+  ]
 
   return (
     <div className="min-h-screen bg-background py-8 pt-20">
@@ -186,9 +241,8 @@ const Dashboard = () => {
                 {[...Array(7)].map((_, i) => (
                   <div
                     key={i}
-                    className={`flex-1 h-2 rounded-full ${
-                      i < activeStreak ? "bg-orange-500" : "bg-muted"
-                    }`}
+                    className={`flex-1 h-2 rounded-full ${i < activeStreak ? "bg-orange-500" : "bg-muted"
+                      }`}
                   />
                 ))}
               </div>
@@ -312,38 +366,55 @@ const Dashboard = () => {
         </div>
 
         {/* Quick Actions */}
-        <Card className="border border-border/40">
-          <CardHeader>
-            <CardTitle>Quick Actions</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <Link to="/my-courses">
-                <Button variant="outline" className="w-full h-full flex flex-col gap-2 py-6">
-                  <BookOpen className="h-6 w-6" />
-                  <span className="text-sm">Browse Courses</span>
-                </Button>
-              </Link>
-              <Link to="/profile">
-                <Button variant="outline" className="w-full h-full flex flex-col gap-2 py-6">
-                  <Trophy className="h-6 w-6" />
-                  <span className="text-sm">Achievements</span>
-                </Button>
-              </Link>
-              <Button variant="outline" className="w-full h-full flex flex-col gap-2 py-6">
-                <Target className="h-6 w-6" />
-                <span className="text-sm">Set Goals</span>
-              </Button>
-              <Button variant="outline" className="w-full h-full flex flex-col gap-2 py-6">
-                <Calendar className="h-6 w-6" />
-                <span className="text-sm">Study Plan</span>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="space-y-4">
+          <h2 className="text-2xl font-bold">Quick Actions</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {quickActions.map((action, i) => {
+              const Content = (
+                <motion.div
+                  whileHover={{ y: -5 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`group p-6 rounded-xl border border-border/40 ${action.borderColor} bg-card transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md`}
+                >
+                  <div className="flex items-start gap-4">
+                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center shrink-0 transition-transform group-hover:scale-110 duration-300 ${action.color}`}>
+                      <action.icon className="h-6 w-6" />
+                    </div>
+                    <div className="space-y-1">
+                      <h3 className="font-semibold text-lg group-hover:text-primary transition-colors">
+                        {action.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {action.description}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              )
+
+              return action.link ? (
+                <Link key={i} to={action.link}>
+                  {Content}
+                </Link>
+              ) : (
+                <div key={i} onClick={action.onClick}>
+                  {Content}
+                </div>
+              )
+            })}
+          </div>
+        </div>
+
+        {modalType && (
+          <ActionModal
+            isOpen={!!modalType}
+            onClose={() => setModalType(null)}
+            type={modalType}
+          />
+        )}
       </div>
     </div>
   )
 }
 
-export default Dashboard
+export default UserDashboard;

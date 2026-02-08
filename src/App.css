@@ -18,9 +18,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #0288d1aa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #4dd0e1aa);
 }
@@ -29,6 +31,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -38,6 +41,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -97,21 +101,25 @@
 /* === LIGHT MODE === */
 :root {
   --radius: 0.625rem;
-  --background: #f8f9fa; /* very light gray */
-  --foreground: #1c1c1c; /* dark text */
+  --background: #f8f9fa;
+  /* very light gray */
+  --foreground: #1c1c1c;
+  /* dark text */
   --card: #ffffff;
   --card-foreground: #1c1c1c;
   --popover: #ffffff;
   --popover-foreground: #1c1c1c;
 
-  --primary: #448aff; /* lightBlue 700 */
+  --primary: #448aff;
+  /* lightBlue 700 */
   --primary-foreground: #4fc3f7;
 
 
   --secondary: #4dd0e1;
   --secondary-foreground: #ffffff;
 
-  --accent: #00897b; /* teal 600 */
+  --accent: #00897b;
+  /* teal 600 */
   --accent-foreground: #1c1c1c;
 
   --muted: #e5e7eb;
@@ -121,12 +129,16 @@
   --input: #d1d5db;
   --ring: #0288d1;
 
-  --shadow-primary: 0 0 60px hsl(199 98% 45% / 0.6);       /* bright cyan-blue glow */
-  --shadow-secondary: 0 0 60px hsl(187 69% 65% / 0.4);    /* soft aqua glow */
-  --shadow-accent: 0 0 80px hsl(173 100% 35% / 0.5);      /* deep teal-green glow */
+  --shadow-primary: 0 0 60px hsl(199 98% 45% / 0.6);
+  /* bright cyan-blue glow */
+  --shadow-secondary: 0 0 60px hsl(187 69% 65% / 0.4);
+  /* soft aqua glow */
+  --shadow-accent: 0 0 80px hsl(173 100% 35% / 0.5);
+  /* deep teal-green glow */
   --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.7),
-               0 0 20px hsl(199 98% 45% / 0.15);        /* subtle layered depth */
-  --shadow-glow: 0 0 100px hsl(199 98% 45% / 0.3);  
+    0 0 20px hsl(199 98% 45% / 0.15);
+  /* subtle layered depth */
+  --shadow-glow: 0 0 100px hsl(199 98% 45% / 0.3);
 
   /* Sidebar palette */
   --sidebar: #ffffff;
@@ -145,8 +157,10 @@
 
 /* === DARK MODE === */
 .dark {
-  --background: #121212; /* dark gray base */
-  --foreground: #e5e5e5; /* light text */
+  --background: #121212;
+  /* dark gray base */
+  --foreground: #e5e5e5;
+  /* light text */
   --card: #1e1e1e;
   --card-foreground: #e5e5e5;
   --popover: #1e1e1e;
@@ -168,12 +182,17 @@
   --input: #2f2f2f;
   --ring: #0288d1;
 
-  --shadow-primary: 0 0 60px hsl(199 98% 45% / 0.6);       /* bright cyan-blue glow */
-  --shadow-secondary: 0 0 60px hsl(187 69% 65% / 0.4);    /* soft aqua glow */
-  --shadow-accent: 0 0 80px hsl(173 100% 35% / 0.5);      /* deep teal-green glow */
+  --shadow-primary: 0 0 60px hsl(199 98% 45% / 0.6);
+  /* bright cyan-blue glow */
+  --shadow-secondary: 0 0 60px hsl(187 69% 65% / 0.4);
+  /* soft aqua glow */
+  --shadow-accent: 0 0 80px hsl(173 100% 35% / 0.5);
+  /* deep teal-green glow */
   --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.7),
-               0 0 20px hsl(199 98% 45% / 0.15);        /* subtle layered depth */
-  --shadow-glow: 0 0 100px hsl(199 98% 45% / 0.3);        /* universal neon effect */
+    0 0 20px hsl(199 98% 45% / 0.15);
+  /* subtle layered depth */
+  --shadow-glow: 0 0 100px hsl(199 98% 45% / 0.3);
+  /* universal neon effect */
 
 
   /* Sidebar palette */
@@ -196,6 +215,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -215,4 +235,3 @@
 [data-sonner-toast][data-type="success"] [data-close-button] {
   color: #ffffff !important;
 }
-
