@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import { SidebarProvider, SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 import useIsMobile from "@/hooks/useIsMobile";
-import Footer from "../components/Footer";
 import AdminSidebar from "../components/AdminSidebar";
 
 interface AdminLayoutProps {
@@ -17,7 +16,7 @@ function LayoutContent({ children }: AdminLayoutProps) {
   return (
     <div className="min-h-screen w-full bg-background">
       {/* Sidebar */}
-      <AdminSidebar/>
+      <AdminSidebar />
 
       {/* Main Content */}
       <div
@@ -26,25 +25,23 @@ function LayoutContent({ children }: AdminLayoutProps) {
           !isMobile && !collapsed ? "ml-64" : "ml-0"
         )}
       >
-       <header
-        className={cn(
-          "fixed top-0 w-full transition-all pt-4 ml-2 duration-300 bg-card/10 h-16 z-50 backdrop-blur-sm",
-          collapsed ? "left-4" : "left-64",
-          isMobile ? "left-4" : ""
+        <header
+          className={cn(
+            "fixed top-0 w-full transition-all pt-4 ml-2 duration-300 bg-card/10 h-16 z-50 backdrop-blur-sm",
+            collapsed ? "left-4" : "left-64",
+            isMobile ? "left-4" : ""
 
-        )}
-      >
-        <div className="text-left">
-            <SidebarTrigger className="h-8 w-8 hover:bg-primary! bg-background text-foreground hover:bg-accent hover:text-accent-foreground" title="Open/Close Sidebar"/>
-        </div>
-      </header>
+          )}
+        >
+          <div className="text-left">
+            <SidebarTrigger className="h-8 w-8 hover:bg-primary! bg-background text-foreground hover:bg-accent hover:text-accent-foreground" title="Open/Close Sidebar" />
+          </div>
+        </header>
 
         {/* Main Content */}
         <main className="flex-1">
           <div className="w-full h-full p-6 pt-10 pb-10 md:pb-10 md:py-20">{children}</div>
         </main>
-
-        <Footer/>
       </div>
     </div>
   );
