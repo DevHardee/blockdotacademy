@@ -12,7 +12,8 @@ import {
   SidebarFooter,
 } from "@/components/ui/sidebar";
 import {
-  Home,
+  LogOut,
+  LayoutDashboard,
   Users,
   BookOpen,
   BarChart2,
@@ -22,11 +23,12 @@ import {
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import { useAuth } from "@/context/AuthContext";
+import { motion } from "motion/react";
 
 const adminNav = [
-  { title: "Dashboard", url: "/admin/dashboard", icon: Home },
-  { title: "Users", url: "/admin/users", icon: Users },
+  { title: "Dashboard", url: "/admin/dashboard", icon: LayoutDashboard },
   { title: "Courses", url: "/admin/courses", icon: BookOpen },
+  { title: "Users", url: "/admin/users", icon: Users },
   { title: "Analytics", url: "/admin/analytics", icon: BarChart2 },
   { title: "Settings", url: "/admin/settings", icon: Settings },
 ];
@@ -60,7 +62,7 @@ export function AdminSidebar() {
       <SidebarContent className="p-3">
         <SidebarGroup>
           <SidebarGroupContent>
-            <SidebarMenu className="space-y-1">
+            <SidebarMenu className="gap-1.5">
               {adminNav.map((item) => {
                 const active = isActive(item.url);
                 return (
@@ -68,21 +70,27 @@ export function AdminSidebar() {
                     <SidebarMenuButton
                       asChild
                       className={cn(
-                        "group w-full flex items-center rounded-xl px-3 py-2 text-xs md:text-sm font-medium transition-colors",
+                        "group relative w-full flex items-center rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-200",
                         active
-                          ? "bg-primary/20 text-primary-foreground! border hover:bg-primary/30 border-primary/30 font-semibold!"
-                          : "hover:bg-primary/10 text-sidebar-foreground!"
+                          ? "bg-primary/15 text-primary border border-primary/20"
+                          : "hover:bg-accent/50 text-muted-foreground hover:text-foreground"
                       )}
                     >
-                      <Link to={item.url}>
+                      <Link to={item.url} className="flex items-center w-full">
                         <item.icon
                           className={cn(
-                            "h-5 w-5 shrink-0 mr-3 transition-transform",
-                            active && "scale-110 text-primary"
+                            "h-4.5 w-4.5 shrink-0 mr-3.5 transition-all duration-300",
+                            active ? "text-primary scale-110" : "group-hover:text-foreground"
                           )}
                         />
-                        <span>{item.title}</span>
-                        {active && <ChevronRight className="h-4 w-4 ml-auto opacity-70" />}
+                        <span className="flex-1">{item.title}</span>
+                        {active && (
+                          <motion.div
+                            layoutId="active-indicator"
+                            className="absolute left-0 w-1 h-6 bg-primary rounded-full"
+                          />
+                        )}
+                        {active && <ChevronRight className="h-4 w-4 opacity-50 ml-2" />}
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -108,15 +116,14 @@ export function AdminSidebar() {
             </select>
           </div>
 
-          <div className="flex items-center gap-2">
-            <Button onClick={logout} className="flex items-center gap-2">
-              <span className="hidden md:inline">Logout</span>
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                <path d="M15 12H3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M10 16l5-4-5-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </Button>
-          </div>
+          <Button
+            onClick={logout}
+            variant="ghost"
+            className="w-full justify-start text-muted-foreground hover:text-red-500 hover:bg-red-500/10 transition-colors"
+          >
+            <LogOut className="h-4 w-4 mr-3" />
+            Logout
+          </Button>
         </div>
       </SidebarFooter>
     </Sidebar>
