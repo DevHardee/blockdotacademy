@@ -34,20 +34,20 @@ export function NavBar() {
   };
 
   return (
-    <header className="fixed bg-background top-0 left-0 w-full z-50 border-b border-border/20 backdrop-blur-xl">
+    <header className="fixed bg-[#030303]/80 top-0 left-0 w-full z-50 border-b border-white/5 backdrop-blur-xl">
       <MaxWidthWrapper>
-        <div className="flex items-center justify-between h-16 px-4 bg-background">
+        <div className="flex items-center justify-between h-16 px-4">
           {/* Logo */}
           <div
             onClick={() => navigate("/")}
-            className="flex flex-col md:flex-row cursor-pointer items-start md:items-end gap-1"
+            className="flex cursor-pointer items-center gap-1 group"
           >
-            <h2 className="font-semibold text-base md:text-2xl bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Blockdot
+            <h2 className="font-black text-xl md:text-2xl tracking-tighter">
+              <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent group-hover:opacity-80 transition-opacity">
+                Blockdot
+              </span>
+              <span className="text-foreground">Academy</span>
             </h2>
-            <p className="text-xs text-shadow-accent md:text-base text-muted-foreground">
-              Academy
-            </p>
           </div>
           {/* <img
             src="/assets/logo4.png"
@@ -75,7 +75,7 @@ export function NavBar() {
             <Button variant="outline" size="sm" className="text-sm ring ring-primary" onClick={() => navigate("/signup")}>
               Sign up
             </Button>
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
           </div>
 
           {/* Mobile Menu */}

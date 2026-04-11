@@ -51,15 +51,15 @@ const Home = () => {
         <Features />
       </SectionWrapper>
 
-      {/* Learning Preview Section */}
-      <div className="w-full">
-        <LearningPreview />
-      </div>
-
       {/* Featured Courses Section */}
       <SectionWrapper>
         <FeaturedCourses />
       </SectionWrapper>
+
+      {/* Journey Section */}
+      <div className="w-full">
+        <LearningPreview />
+      </div>
 
       {/* Testimonials Section */}
       <SectionWrapper>

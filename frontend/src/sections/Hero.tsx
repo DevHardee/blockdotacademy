@@ -1,87 +1,81 @@
 import { Button } from "@/components/ui/button"
-import { AnimatedCounter } from "@/components/AnimatedCounter"
 import { Link } from "react-router-dom"
-import {
-  PlayCircle,
-  ArrowRight,
-  Sparkles,
-} from "lucide-react"
-import { Badge } from "@/components/ui/badge"
+import { motion, type Variants } from "motion/react"
 
 const Hero = () => {
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  }
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  }
+
   return (
-    <section id="home" className="pt-10 pb-10 md:pb-10 md:py-20 relative">
-          <div className="flex flex-col p-3 gap-16 items-center justify-center">
-            <div className="space-y-8">
+    <section id="home" className="relative flex items-center justify-center py-14 md:py-28 bg-[#030303] overflow-hidden">
+      {/* Background Glows */}
+      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-primary/20 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-secondary/10 rounded-full blur-[120px] pointer-events-none" />
 
-              <div className="flex flex-col items-center justify-center">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="container max-w-6xl mx-auto px-4 relative z-10 text-center"
+      >
+        <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-primary mb-8 backdrop-blur-md">
+          <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(99,102,241,0.8)]" />
+          <span className="text-[10px] font-bold text-secondary uppercase tracking-[0.2em]">The Digital Observatory</span>
+        </motion.div>
 
-              <Badge className="bg-primary/10 text-foreground hover:bg-transparent! flex items-center! border-primary/30 w-fit px-3 py-2 rounded-full">
-                <Sparkles className="w-4 h-4 mr-2 text-primary" />
-                  Web3 Center of Learning
-              </Badge>
+        <motion.h1
+          variants={itemVariants}
+          className="text-6xl md:text-8xl font-black mb-8 leading-[1.05] tracking-tight text-white"
+        >
+          Learn. <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent italic">Build.</span><br />
+          Grow.
+        </motion.h1>
 
-                <h1 className="text-5xl! capitalize md:text-7xl lg:text-[70px]! font-extrabold leading-tight">
-                  <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
-                    Blockdot Academy
-                  </span>
-                </h1>
+        <motion.p
+          variants={itemVariants}
+          className="text-lg md:text-xl text-white/40 max-w-2xl mx-auto mb-12 leading-relaxed font-medium"
+        >
+          Master trading, build real-world skills, and unlock global opportunities in the new digital economy.
+        </motion.p>
 
-                <p className="text-lg md:text-2xl text-center text-muted-foreground max-w-xl leading-relaxed">
-                  Master blockchain, smart contracts, and DeFi through immersive,
-                  hands-on learning experiences.
-                </p>
-              </div>
-
-              <div className="flex items-center justify-center flex-col md:flex-row gap-4">
-                <Link to="/courses">
-                  <Button
-                    size="lg"
-                    className="bg-primary-foreground! shadow-primary text-black! hover:bg-primary-foreground/95! shadow-lg px-8 py-6 text-base"
-                  >
-                    <PlayCircle className="mr-2 h-5 w-5" />
-                    Start Learning
-                  </Button>
-                </Link>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="text-base hover:text-black hover:bg-primary-foreground! ring ring-primary px-8 py-6 border-primary/30 transition-colors"
-                >
-                  Watch Demo
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </div>
-
-              {/* Stats */}
-              <div className="flex items-center justify-center space-x-8 pt-8">
-                <div>
-                  <AnimatedCounter
-                    end={10000}
-                    suffix="+"
-                    className="text-xl md:text-3xl font-bold text-primary"
-                  />
-                  <p className="text-xs md:text-sm ml-1 text-muted-foreground">Builders</p>
-                </div>
-                <div>
-                  <AnimatedCounter
-                    end={50}
-                    suffix="+"
-                    className="text-xl md:text-3xl font-bold text-accent"
-                  />
-                  <p className="text-xs md:text-sm text-muted-foreground">Courses</p>
-                </div>
-                <div>
-                  <AnimatedCounter
-                    end={95}
-                    suffix="%"
-                    className="text-xl md:text-3xl font-bold text-secondary"
-                  />
-                  <p className="text-xs md:text-sm text-muted-foreground">Success</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <motion.div
+          variants={itemVariants}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+        >
+          <Link to="/courses" className="w-full sm:w-auto">
+            <Button
+              size="lg"
+              className="w-full md:w-auto bg-linear-to-r from-primary to-accent hover:brightness-110 transition-all font-bold px-10 py-7 rounded-2xl text-lg shadow-[0_0_20px_rgba(99,102,241,0.3)] group"
+            >
+              Start learning
+            </Button>
+          </Link>
+          <Button
+            size="lg"
+            variant="ghost"
+            className="w-full md:w-auto hover:bg-accent/10! border border-primary! font-bold px-10 py-7 rounded-2xl text-lg transition-all text-white/80"
+          >
+            Explore Learning Paths
+          </Button>
+        </motion.div>
+      </motion.div>
     </section>
   )
 }
