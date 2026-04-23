@@ -36,7 +36,13 @@ const Home = () => {
   }, [location]);
 
   return (
-    <div className="relative flex flex-col justify-center w-full bg-background text-foreground overflow-x-hidden">
+    <div className="relative flex flex-col justify-center w-full bg-background text-foreground overflow-clip">
+      {/* Decorative Background Blobs */}
+      <div className="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-[-1]">
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-linear-to-r from-primary to-accent opacity-10 blur-[150px] rounded-full mix-blend-screen" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-linear-to-l from-primary to-accent opacity-10 blur-[150px] rounded-full mix-blend-screen" />
+      </div>
+
       {/* Hero Section - Animates on load */}
       <motion.div
         initial={{ opacity: 0 }}
