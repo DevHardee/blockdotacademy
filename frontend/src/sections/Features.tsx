@@ -6,6 +6,7 @@ import {
   ArrowRight,
   Cpu
 } from "lucide-react"
+import { Link } from "react-router-dom"
 
 // const features = [
 //   {
@@ -120,10 +121,10 @@ const Features = () => {
                     {path.description}
                   </p>
 
-                  <button className="flex items-center gap-2 text-sm font-bold text-white group/btn">
+                  <Link to={`/course/${i + 1}`} className="flex items-center gap-2 text-sm font-bold text-white group/btn">
                     View Syllabus
                     <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                  </button>
+                  </Link>
                 </div>
               </Card>
             </motion.div>
