@@ -167,13 +167,15 @@
   --popover: #030303;
   --popover-foreground: #fafafa;
 
-  --primary: #6366f1;
-  /* Vibrant indigo */
+  --primary: #2962ff;
+  /* Vibrant blue */
   --primary-foreground: #ffffff;
 
   --secondary: #a855f7;
   /* Vibrant purple */
   --secondary-foreground: #ffffff;
+
+  --tertiary: #56826d;
 
   --accent: #0ea5e9;
   /* Bright sky blue */
