@@ -78,16 +78,25 @@ const UserDashboard = () => {
     [enrolledCourseIds]
   )
 
+  // if (!user) {
+  //   return (
+  //     <div className="flex justify-center items-center min-h-screen bg-[#0f0f11]">
+  //       <p className="text-muted-foreground animate-pulse">Loading your personalized dashboard...</p>
+  //     </div>
+  //   )
+  // }
+
   if (!user) {
     return (
-      <div className="flex justify-center items-center min-h-screen bg-[#0f0f11]">
-        <p className="text-muted-foreground animate-pulse">Loading your personalized dashboard...</p>
+      <div className="grid grid-cols-1 md:grid-cols-3 w-16 h-16">
+        <div className="lg:col-span-2"></div>
+        <div></div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-[#0f0f11] py-12 pt-28 text-white selection:bg-blue-500/30">
+    <div className="min-h-screen bg-[#030303] py-12 pt-28 text-white selection:bg-primary/30">
       <MaxWidthWrapper>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
@@ -105,10 +114,10 @@ const UserDashboard = () => {
                   You've completed {enrolledCourseIds.length > 0 ? '45%' : '0%'} of your learning path. {enrolledCourseIds.length > 0 ? "You're making great progress towards your certification." : "Start your journey today and master the blockchain."}
                 </p>
                 <div className="mt-8 flex flex-wrap gap-4">
-                  <Button asChild className="rounded-full px-8 py-6 bg-blue-600 hover:bg-blue-700 text-white border-0 shadow-lg shadow-blue-900/20">
+                  <Button asChild className="rounded-full px-8 py-6 bg-linear-to-r from-primary to-accent hover:brightness-110 text-white! border-0 shadow-lg shadow-primary/20 transition-all font-black uppercase tracking-widest text-xs">
                     <Link to="/my-courses">Continue Learning</Link>
                   </Button>
-                  <Button variant="outline" asChild className="rounded-full px-8 py-6 border-white/10 bg-white/5 hover:bg-white/10 text-white">
+                  <Button variant="outline" asChild className="rounded-full px-8 py-6 border-white/10 bg-white/5 hover:bg-white/10 text-white! font-black uppercase tracking-widest text-xs">
                     <Link to="/profile">View Profile</Link>
                   </Button>
                 </div>
@@ -120,12 +129,12 @@ const UserDashboard = () => {
               <Card className="bg-[#1a1b1e]/60 backdrop-blur-xl border-white/5 rounded-[2rem] overflow-hidden">
                 <CardContent className="p-8">
                   <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                    <TrendingUp className="w-5 h-5 text-blue-500" />
+                    <TrendingUp className="w-5 h-5 text-primary" />
                     Learning Progress
                   </h3>
                   <div className="flex justify-around items-center">
-                    <CircularProgress value={enrolledCourseIds.length > 0 ? 70 : 0} label="BLOCKCHAIN" strokeColor="text-blue-500" />
-                    <CircularProgress value={enrolledCourseIds.length > 0 ? 45 : 0} label="DEFI MASTERY" strokeColor="text-purple-500" />
+                    <CircularProgress value={enrolledCourseIds.length > 0 ? 70 : 0} label="BLOCKCHAIN" strokeColor="text-primary" />
+                    <CircularProgress value={enrolledCourseIds.length > 0 ? 45 : 0} label="DEFI MASTERY" strokeColor="text-accent" />
                   </div>
                 </CardContent>
               </Card>
@@ -151,7 +160,7 @@ const UserDashboard = () => {
                         </div>
                         <span className="text-xs font-bold text-blue-400">65%</span>
                       </div>
-                      <Button asChild className="w-full rounded-xl bg-blue-600 hover:bg-blue-700 h-12">
+                      <Button asChild className="w-full rounded-xl bg-blue-600 hover:bg-blue-700 text-white! h-12">
                         <Link to={`/course/${enrolledCourses[0].id}`}>Continue Session</Link>
                       </Button>
                     </div>

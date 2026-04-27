@@ -42,19 +42,19 @@ export function AdminSidebar() {
     path === "/" ? currentPath === "/" : currentPath.startsWith(path);
 
   return (
-    <Sidebar className="w-64 border-r border-sidebar-border/40 bg-sidebar shadow-sm">
-      <SidebarHeader className="border-b border-sidebar-border/40 p-4">
+    <Sidebar className="w-64 border-r border-white/5 bg-[#030303] shadow-2xl">
+      <SidebarHeader className="border-b border-white/5 p-6">
         <div className="flex items-center space-x-3">
-          <div className="w-7 h-7 md:w-10 md:h-10 bg-primary rounded-xl flex items-center justify-center">
-            <svg className="h-4 w-4 text-secondary" viewBox="0 0 24 24" fill="none">
+          <div className="w-10 h-10 bg-linear-to-br from-primary to-accent rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(99,102,241,0.3)]">
+            <svg className="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none">
               <path d="M4 6h16M4 12h12M4 18h16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
           </div>
-          <div className="flex flex-col items-start">
-            <h2 className="font-semibold text-base md:text-lg bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Blockdot Admin
+          <div className="flex flex-col items-start px-1">
+            <h2 className="font-black text-xl tracking-tight text-white leading-none">
+              Admin
             </h2>
-            <p className="text-xs text-muted-foreground">Control Panel</p>
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30 mt-1">Control Panel</p>
           </div>
         </div>
       </SidebarHeader>
@@ -70,27 +70,23 @@ export function AdminSidebar() {
                     <SidebarMenuButton
                       asChild
                       className={cn(
-                        "group relative w-full flex items-center rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-200",
+                        "group relative w-full flex items-center rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300",
                         active
-                          ? "bg-primary/15 text-primary border border-primary/20"
-                          : "hover:bg-accent/50 text-muted-foreground hover:text-foreground"
+                          ? "bg-linear-to-r from-primary to-accent text-white! shadow-[0_0_15px_rgba(99,102,241,0.2)]"
+                          : "hover:bg-white/5 text-white/50 hover:text-white"
                       )}
                     >
                       <Link to={item.url} className="flex items-center w-full">
                         <item.icon
                           className={cn(
                             "h-4.5 w-4.5 shrink-0 mr-3.5 transition-all duration-300",
-                            active ? "text-primary scale-110" : "group-hover:text-foreground"
+                            active ? "scale-110" : ""
                           )}
                         />
-                        <span className="flex-1">{item.title}</span>
+                        <span className={cn("flex-1", active && "font-bold")}>{item.title}</span>
                         {active && (
-                          <motion.div
-                            layoutId="active-indicator"
-                            className="absolute left-0 w-1 h-6 bg-primary rounded-full"
-                          />
+                          <div className="ml-auto w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
                         )}
-                        {active && <ChevronRight className="h-4 w-4 opacity-50 ml-2" />}
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>

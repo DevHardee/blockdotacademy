@@ -37,7 +37,7 @@ const Hero = () => {
       >
         <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-primary mb-8 backdrop-blur-md">
           <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(99,102,241,0.8)]" />
-          <span className="text-[10px] font-bold text-secondary uppercase tracking-[0.2em]">The Digital Observatory</span>
+          <span className="text-[10px] font-bold text-tertiary uppercase tracking-[0.2em]">The Digital Observatory</span>
         </motion.div>
 
         <motion.h1

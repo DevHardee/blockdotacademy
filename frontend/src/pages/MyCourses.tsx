@@ -7,7 +7,7 @@ import { Search, Filter } from "lucide-react"
 import { useAuth } from "@/context/AuthContext"
 import { courses } from "@/lib/courses"
 import { CourseCard } from "@/components/course/CourseCard"
-import { toast}  from "sonner"
+import { toast } from "sonner"
 
 const MyCourses = () => {
   const { isAuthenticated } = useAuth()
@@ -20,7 +20,7 @@ const MyCourses = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
-  
+
   useEffect(() => {
     // Simulate fetching enrolled courses from localStorage
     const stored = localStorage.getItem("enrolledCourses")
@@ -63,15 +63,19 @@ const MyCourses = () => {
   const levels = ["all", "Beginner", "Intermediate", "Advanced"]
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#030303] text-white selection:bg-primary/30">
       {/* Header */}
-      <section className="bg-muted/10 py-16 border-b border-border/50">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h1 className="capitalize text-4xl md:text-5xl font-bold mt-6 mb-4 bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
-             View Our Courses
+      <section className="bg-[#030303] py-20 border-b border-white/5 relative overflow-hidden">
+        {/* Glow */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
+          <h1 className="capitalize text-5xl md:text-7xl font-black mt-6 mb-6 bg-linear-to-r from-primary to-accent bg-clip-text text-transparent tracking-tight">
+            Our Courses
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Learn from industry experts on variety of topics from blockchain to DeFi and Web3.
+          <p className="text-lg text-white/40 max-w-2xl mx-auto font-medium leading-relaxed">
+            Master the digital economy with industry experts in blockchain, DeFi, and Web3.
           </p>
 
           {/* Search + Filters */}
@@ -115,30 +119,32 @@ const MyCourses = () => {
 
       {/* Enrolled Courses */}
       {isAuthenticated && (
-        <section className="py-16">
+        <section className="py-20">
           <div className="max-w-7xl mx-auto px-6">
-            <h2 className="text-2xl font-semibold mb-6">Your Courses</h2>
+            <h2 className="text-4xl font-black tracking-tight mb-12">Your Enrolled Tracking</h2>
             {enrolledCourses.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 {enrolledCourses.map((course) => (
                   <CourseCard key={course.id} course={course} enrolled />
                 ))}
               </div>
             ) : (
-              <p className="text-muted-foreground">You haven’t enrolled in any courses yet.</p>
+              <div className="p-12 bg-white/5 border border-white/5 rounded-[2.5rem] text-center">
+                <p className="text-white/40 font-medium">You haven’t enrolled in any courses yet.</p>
+              </div>
             )}
           </div>
         </section>
       )}
 
       {/* All Courses */}
-      <section className="pb-20">
+      <section className="pb-32">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-2xl font-semibold mb-6">
-              View Other Courses
+          <h2 className="text-4xl font-black tracking-tight mb-12">
+            Available curriculum
           </h2>
           {filteredAvailable.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {filteredAvailable.map((course) => (
                 <CourseCard
                   key={course.id}
@@ -148,10 +154,10 @@ const MyCourses = () => {
               ))}
             </div>
           ) : (
-            <div className="text-center py-16">
-              <Filter className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
-              <h3 className="text-2xl font-semibold mb-2">No courses found</h3>
-              <p className="text-muted-foreground">Try adjusting your search criteria or filters.</p>
+            <div className="text-center py-32 bg-white/5 border border-white/5 rounded-[2.5rem]">
+              <Filter className="h-16 w-16 mx-auto text-white/10 mb-6" />
+              <h3 className="text-2xl font-bold mb-2">No matching tracks</h3>
+              <p className="text-white/30 font-medium">Try adjusting your search criteria or filters.</p>
             </div>
           )}
         </div>
