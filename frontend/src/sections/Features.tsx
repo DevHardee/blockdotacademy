@@ -121,7 +121,7 @@ const Features = () => {
                     {path.description}
                   </p>
 
-                  <Link to={`/course/${i + 1}`} className="flex items-center gap-2 text-sm font-bold text-white group/btn">
+                  <Link to={`/course/${i + 1}`} className="flex items-center gap-2 text-sm font-bold text-white! border border-primary p-2 rounded-xl w-fit group/btn">
                     View Syllabus
                     <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
                   </Link>

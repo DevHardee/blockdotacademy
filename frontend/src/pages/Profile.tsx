@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -71,8 +71,8 @@ const Profile = () => {
 
   if (!user) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        <p className="text-muted-foreground">Loading your profile...</p>
+      <div className="flex justify-center items-center min-h-screen bg-[#030303]">
+        <p className="text-white/40 animate-pulse">Loading your profile...</p>
       </div>
     )
   }
@@ -87,86 +87,73 @@ const Profile = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background py-10 pt-20">
+    <div className="min-h-screen bg-[#030303] text-white py-12 pt-28 selection:bg-primary/30">
       <div className="max-w-4xl mx-auto px-6">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl! md:text-4xl font-bold mb-2">Profile Settings</h1>
-          <p className="text-muted-foreground">
+        <div className="mb-12">
+          <h1 className="text-5xl md:text-6xl font-black mb-4 tracking-tight">Profile Settings</h1>
+          <p className="text-lg text-white/40 font-medium">
             Manage your account information and preferences
           </p>
         </div>
 
         {/* Profile Card */}
-        <Card className="border border-border/40">
-          <CardHeader className="border-b border-border/40">
-            <div className="flex flex-col md:flex-row items-start gap-2 md:items-center justify-between">
+        <Card className="bg-[#0a0a0a] border-white/5 rounded-[2.5rem] p-4 md:p-8 overflow-hidden relative">
+          {/* Decorative Glow */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[100px] -mr-32 -mt-32 pointer-events-none" />
+
+          <div className="relative z-10 flex flex-col md:flex-row items-start gap-8 md:items-center justify-between mb-12 border-b border-white/5 pb-8">
+            <div className="flex items-center gap-6">
+              <div className="relative group">
+                <Avatar className="h-24 w-24 border-4 border-white/5 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+                  <AvatarImage src={formData.avatar} alt={formData.name} />
+                  <AvatarFallback className="text-2xl font-black bg-linear-to-br from-primary to-accent text-white">
+                    {getInitials(formData.name)}
+                  </AvatarFallback>
+                </Avatar>
+                {editing && (
+                  <button
+                    onClick={handleAvatarUpload}
+                    className="absolute bottom-0 right-0 p-2.5 bg-primary rounded-full hover:brightness-110 transition-all shadow-[0_0_15px_rgba(99,102,241,0.5)] border-2 border-[#0a0a0a]"
+                  >
+                    <Camera className="h-4 w-4 text-white" />
+                  </button>
+                )}
+              </div>
               <div>
-                <CardTitle>Personal Information</CardTitle>
-                <CardDescription>
-                  Update your profile details and personal information
-                </CardDescription>
+                <h3 className="text-2xl font-bold text-white">{formData.name || "Academy Member"}</h3>
+                <p className="text-sm font-medium text-white/40">{formData.email}</p>
               </div>
-              {!editing ? (
-                <Button onClick={() => setEditing(true)} size="sm">
-                  <Edit className="h-4 w-4 mr-2" />
-                  Edit Profile
-                </Button>
-              ) : (
-                <div className="flex gap-2">
-                  <Button onClick={handleSave} size="sm">
-                    <Save className="h-4 w-4 mr-2" />
-                    Save
-                  </Button>
-                  <Button onClick={handleCancel} size="sm" variant="outline">
-                    <X className="h-4 w-4 mr-2" />
-                    Cancel
-                  </Button>
-                </div>
-              )}
             </div>
-          </CardHeader>
-          <CardContent className="pt-6">
-            <div className="space-y-8">
-              {/* Avatar Section */}
-              <div className="flex flex-col md:flex-row items-center gap-6">
-                <div className="relative">
-                  <Avatar className="h-24 w-24 border-4 border-primary/20">
-                    <AvatarImage src={formData.avatar} alt={formData.name} />
-                    <AvatarFallback className="text-2xl bg-primary/10 text-primary">
-                      {getInitials(formData.name)}
-                    </AvatarFallback>
-                  </Avatar>
-                  {editing && (
-                    <button
-                      onClick={handleAvatarUpload}
-                      className="absolute bottom-0 right-0 p-2 bg-primary rounded-full hover:bg-primary/90 transition-colors shadow-lg"
-                    >
-                      <Camera className="h-4 w-4 text-primary-foreground" />
-                    </button>
-                  )}
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold">{formData.name || "Your Name"}</h3>
-                  <p className="text-sm text-muted-foreground">{formData.email}</p>
-                  {editing && (
-                    <p className="text-xs text-muted-foreground mt-2">
-                      Click the camera icon to generate a new avatar
-                    </p>
-                  )}
-                </div>
+
+            {!editing ? (
+              <Button onClick={() => setEditing(true)} size="lg" className="rounded-xl px-8 h-14 bg-white/5 hover:bg-white/10 text-white font-black uppercase tracking-widest text-xs border border-white/10 transition-all">
+                <Edit className="h-4 w-4 mr-2" />
+                Edit Profile
+              </Button>
+            ) : (
+              <div className="flex gap-3">
+                <Button onClick={handleSave} size="lg" className="rounded-xl px-8 h-14 bg-linear-to-r from-primary to-accent hover:brightness-110 text-white font-black uppercase tracking-widest text-xs border-0 shadow-[0_0_15px_rgba(99,102,241,0.3)] transition-all">
+                  <Save className="h-4 w-4 mr-2" />
+                  Save
+                </Button>
+                <Button onClick={handleCancel} size="lg" className="rounded-xl px-8 h-14 bg-white/5 hover:bg-white/10 text-white font-black uppercase tracking-widest text-xs border border-white/10 transition-all">
+                  <X className="h-4 w-4 mr-2" />
+                  Cancel
+                </Button>
               </div>
+            )}
+          </div>
 
-              <div className="h-px bg-border" />
-
-              {/* Form Fields */}
-              <div className="space-y-6">
-                {/* Name */}
-                <div className="space-y-2">
-                  <Label htmlFor="name" className="flex items-center gap-2">
-                    <User className="h-4 w-4 text-muted-foreground" />
-                    Full Name
-                  </Label>
+          <CardContent className="p-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Name */}
+              <div className="space-y-3">
+                <Label htmlFor="name" className="text-[10px] font-black uppercase tracking-[0.2em] text-white/30 ml-1">
+                  Full Name
+                </Label>
+                <div className="relative">
+                  <User className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-white/20" />
                   <Input
                     id="name"
                     name="name"
@@ -174,93 +161,66 @@ const Profile = () => {
                     onChange={handleChange}
                     disabled={!editing}
                     placeholder="Enter your full name"
-                    className="disabled:opacity-100 disabled:cursor-default"
+                    className="bg-white/5 border-white/5 rounded-2xl h-14 pl-12 text-white font-medium focus:border-primary/50 focus:ring-0 disabled:opacity-100 disabled:cursor-default"
                   />
                 </div>
+              </div>
 
-                {/* Email */}
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="flex items-center gap-2">
-                    <Mail className="h-4 w-4 text-muted-foreground" />
-                    Email Address
-                  </Label>
+              {/* Email */}
+              <div className="space-y-3">
+                <Label htmlFor="email" className="text-[10px] font-black uppercase tracking-[0.2em] text-white/30 ml-1">
+                  Email Address
+                </Label>
+                <div className="relative">
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-white/20" />
                   <Input
                     id="email"
                     name="email"
                     type="email"
                     value={formData.email}
                     disabled
-                    className="disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="bg-white/5 border-white/5 rounded-2xl h-14 pl-12 text-white/30 font-medium disabled:cursor-not-allowed"
                   />
-                  <p className="text-xs text-muted-foreground">
-                    Email cannot be changed. Contact support if you need assistance.
-                  </p>
-                </div>
-
-                {/* Bio */}
-                <div className="space-y-2">
-                  <Label htmlFor="bio">Bio</Label>
-                  <Textarea
-                    id="bio"
-                    name="bio"
-                    value={formData.bio}
-                    onChange={handleChange}
-                    disabled={!editing}
-                    placeholder="Tell us about yourself and your Web3 journey..."
-                    rows={4}
-                    className="disabled:opacity-100 disabled:cursor-default resize-none"
-                  />
-                  <p className="text-xs text-muted-foreground">
-                    {formData.bio.length}/500 characters
-                  </p>
                 </div>
               </div>
 
-              {editing && (
-                <>
-                  <div className="h-px bg-border" />
-                  <div className="flex justify-end gap-3">
-                    <Button onClick={handleCancel} variant="outline">
-                      <X className="h-4 w-4 mr-2" />
-                      Cancel
-                    </Button>
-                    <Button onClick={handleSave}>
-                      <Save className="h-4 w-4 mr-2" />
-                      Save Changes
-                    </Button>
-                  </div>
-                </>
-              )}
+              {/* Bio */}
+              <div className="md:col-span-2 space-y-3">
+                <Label htmlFor="bio" className="text-[10px] font-black uppercase tracking-[0.2em] text-white/30 ml-1">Bio</Label>
+                <Textarea
+                  id="bio"
+                  name="bio"
+                  value={formData.bio}
+                  onChange={handleChange}
+                  disabled={!editing}
+                  placeholder="Tell us about yourself and your digital journey..."
+                  rows={4}
+                  className="bg-white/5 border-white/5 rounded-[1.5rem] p-5 text-white font-medium leading-relaxed resize-none focus:border-primary/50 focus:ring-0 disabled:opacity-100 disabled:cursor-default"
+                />
+                <div className="flex justify-end pr-2 font-bold text-[10px] text-white/20 uppercase tracking-widest">
+                  {formData.bio.length}/500
+                </div>
+              </div>
             </div>
           </CardContent>
         </Card>
 
-        {/* Additional Settings Cards */}
-        <div className="grid md:grid-cols-2 gap-6 mt-6">
-          {/* Account Security */}
-          <Card className="border border-border/40">
-            <CardHeader>
-              <CardTitle className="text-lg">Account Security</CardTitle>
-              <CardDescription>Manage your password and security settings</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button variant="outline" className="w-full">
-                Change Password
-              </Button>
-            </CardContent>
+        {/* Action Grid */}
+        <div className="grid md:grid-cols-2 gap-6 mt-8">
+          <Card className="bg-[#0a0a0a] border-white/5 rounded-[2rem] p-8">
+            <h4 className="text-xl font-bold text-white mb-2">Account Security</h4>
+            <p className="text-sm text-white/40 mb-8 font-medium">Update your password or enable FA.</p>
+            <Button variant="outline" className="w-full rounded-xl h-14 bg-white/5 hover:bg-white/10 text-white font-bold uppercase tracking-widest text-[10px] border-white/10 transition-all">
+              Security Portal
+            </Button>
           </Card>
 
-          {/* Danger Zone */}
-          <Card className="border border-red-500/40">
-            <CardHeader>
-              <CardTitle className="text-lg text-red-500">Danger Zone</CardTitle>
-              <CardDescription>Irreversible account actions</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button variant="destructive" className="w-full">
-                Delete Account
-              </Button>
-            </CardContent>
+          <Card className="bg-[#0a0a0a] border-red-500/10 rounded-[2rem] p-8">
+            <h4 className="text-xl font-bold text-red-500 mb-2">Danger Zone</h4>
+            <p className="text-sm text-white/40 mb-8 font-medium">Irreversible account actions.</p>
+            <Button variant="destructive" className="w-full rounded-xl h-14 bg-red-500/5 hover:bg-red-500/10 text-red-500 font-bold uppercase tracking-widest text-[10px] border-red-500/10 transition-all">
+              Delete Account
+            </Button>
           </Card>
         </div>
       </div>

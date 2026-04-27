@@ -14,7 +14,7 @@ function LayoutContent({ children }: AdminLayoutProps) {
   const isMobile = useIsMobile(1024);
 
   return (
-    <div className="min-h-screen w-full bg-background">
+    <div className="min-h-screen w-full bg-[#030303] text-white">
       {/* Sidebar */}
       <AdminSidebar />
 
@@ -27,20 +27,23 @@ function LayoutContent({ children }: AdminLayoutProps) {
       >
         <header
           className={cn(
-            "fixed top-0 w-full transition-all pt-4 ml-2 duration-300 bg-card/10 h-16 z-50 backdrop-blur-sm",
-            collapsed ? "left-4" : "left-64",
-            isMobile ? "left-4" : ""
+            "fixed top-0 w-full transition-all pt-4 ml-0 duration-300 bg-[#030303]/80 h-16 z-50 backdrop-blur-md border-b border-white/5",
+            collapsed ? "left-0" : "left-64",
+            isMobile ? "left-0" : ""
 
           )}
         >
-          <div className="text-left">
-            <SidebarTrigger className="h-8 w-8 hover:bg-primary! bg-background text-foreground hover:bg-accent hover:text-accent-foreground" title="Open/Close Sidebar" />
+          <div className="flex items-center px-6 h-full">
+            <SidebarTrigger className="h-10 w-10 hover:bg-white/10! bg-white/5 text-white border border-white/10 rounded-xl" title="Open/Close Sidebar" />
+            <div className="ml-4 font-bold text-sm tracking-widest uppercase text-white/40">
+              Management Portal
+            </div>
           </div>
         </header>
 
         {/* Main Content */}
         <main className="flex-1">
-          <div className="w-full h-full p-6 pt-10 pb-10 md:pb-10 md:py-20">{children}</div>
+          <div className="w-full h-full p-6 pt-24 pb-10 md:pb-10 md:py-20">{children}</div>
         </main>
       </div>
     </div>

@@ -1,10 +1,7 @@
-"use client";
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
-import { ThemeToggle } from "./ThemeToggle";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -80,7 +77,6 @@ export function NavBar() {
 
           {/* Mobile Menu */}
           <div className="md:hidden flex items-center gap-2">
-            <ThemeToggle />
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">

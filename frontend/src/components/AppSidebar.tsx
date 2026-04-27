@@ -17,7 +17,6 @@ import {
   Users,
   Trophy,
   User,
-  ChevronRight,
   ArrowRightToLine,
   LayoutDashboard
 } from "lucide-react";
@@ -37,30 +36,30 @@ export function AppSidebar() {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  const {logout, isAdmin, toggleAdmin} = useAuth()
+  const { logout, isAdmin, toggleAdmin } = useAuth()
 
   const isActive = (path: string) =>
     path === "/" ? currentPath === "/" : currentPath.startsWith(path);
 
   return (
-      <Sidebar className="w-64 border-r border-sidebar-border/40 bg-sidebar shadow-sm">
+    <Sidebar className="w-64 border-r border-white/5 bg-[#030303] shadow-2xl">
       {/* Header */}
-      <SidebarHeader className="border-b border-sidebar-border/40 p-4">
+      <SidebarHeader className="border-b border-white/5 p-6">
         <div className="flex items-center space-x-3">
-          <div className="w-7 h-7 md:w-10 md:h-10 bg-primary rounded-xl flex items-center justify-center">
-            <Code className="h-3 w-3 md:w-5 md:h-5 text-secondary" />
+          <div className="w-10 h-10 bg-linear-to-br from-primary to-accent rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(99,102,241,0.3)]">
+            <Code className="h-5 w-5 text-white" />
           </div>
-          <div className="flex flex-col items-start">
-            <h2 className="font-semibold text-base md:text-lg bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <div className="flex flex-col items-start px-1">
+            <h2 className="font-black text-xl tracking-tight text-white leading-none">
               Blockdot
             </h2>
-            <p className="text-xs text-muted-foreground">Academy</p>
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30 mt-1">Academy</p>
           </div>
         </div>
       </SidebarHeader>
 
       {/* Navigation */}
-      <SidebarContent className="p-3">
+      <SidebarContent className="p-4">
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu className="space-y-1">
@@ -71,22 +70,22 @@ export function AppSidebar() {
                     <SidebarMenuButton
                       asChild
                       className={cn(
-                        "group w-full flex items-center rounded-xl px-3 py-2 text-xs md:text-sm font-medium transition-colors",
+                        "group w-full flex items-center rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300",
                         active
-                          ? "bg-primary/20 text-primary-foreground! border hover:bg-primary/30 border-primary/30 font-semibold!"
-                          : "hover:bg-primary/10 text-sidebar-foreground dark:text-white!"
+                          ? "bg-accent text-white! shadow-[0_0_15px_rgba(99,102,241,0.2)]"
+                          : "hover:bg-white/5 text-white/50! hover:text-white!"
                       )}
                     >
                       <Link to={item.url}>
                         <item.icon
                           className={cn(
-                            "h-5 w-5 shrink-0 mr-3 transition-transform",
-                            active && "scale-110 text-primary"
+                            "h-5 w-5 shrink-0 mr-3 transition-all duration-300",
+                            active && "scale-110"
                           )}
                         />
-                        <span>{item.title}</span>
+                        <span className={cn(active && "font-bold")}>{item.title}</span>
                         {active && (
-                          <ChevronRight className="h-4 w-4 ml-auto opacity-70" />
+                          <div className="ml-auto w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
                         )}
                       </Link>
                     </SidebarMenuButton>
@@ -104,23 +103,23 @@ export function AppSidebar() {
           <ThemeToggle />
 
           <div className="flex flex-col">
-          <Button 
-            onClick={() => toggleAdmin()}
-            variant="outline"
-            className="w-full"
-          >
-            {isAdmin ? "Exit Admin" : "Admin Mode"}
-          </Button>
+            <Button
+              onClick={() => toggleAdmin()}
+              variant="ghost"
+              className="w-full justify-start text-white/40 hover:text-white hover:bg-white/5 transition-colors text-xs font-bold uppercase tracking-widest"
+            >
+              {isAdmin ? "Exit Admin" : "Admin Mode"}
+            </Button>
 
-          <Button 
-            onClick={logout}
-            className="flex items-center gap-2">
-             <p>Logout</p>
-            <ArrowRightToLine/>
-          </Button>
+            <Button
+              onClick={logout}
+              className="flex items-center gap-2">
+              <p>Logout</p>
+              <ArrowRightToLine />
+            </Button>
           </div>
         </div>
       </SidebarFooter>
-      </Sidebar>
+    </Sidebar>
   );
 }

@@ -3,13 +3,28 @@ import {
   FaInstagram,
   FaYoutube,
   FaTelegram,
-  FaTwitter,
   FaLinkedinIn,
-  FaGithub
 } from "react-icons/fa";
 
 const Footer = () => {
   const year = new Date().getFullYear();
+
+  const FaX = () => {
+    return (
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round">
+        <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+        <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+      </svg>
+    )
+  }
 
   return (
     <footer className="w-full bg-[#030303] pt-32 pb-12 px-4 relative overflow-hidden">
@@ -24,22 +39,22 @@ const Footer = () => {
             <h3 className="text-3xl font-black text-white tracking-tighter">
               Blockdot<span className="text-primary">.</span>
             </h3>
-            <p className="text-lg text-white/40 leading-relaxed font-medium max-w-md">
+            <p className="text-lg text-white/70 leading-relaxed font-medium max-w-md">
               Master the digital economy through cutting-edge education, real-world simulations, and a global community of forward-thinkers.
             </p>
             <div className="flex gap-3">
               {[
                 { icon: <FaTelegram />, href: "#" },
-                { icon: <FaTwitter />, href: "#" },
+                { icon: <FaX />, href: "#" },
                 { icon: <FaInstagram />, href: "#" },
                 { icon: <FaLinkedinIn />, href: "#" },
-                { icon: <FaGithub />, href: "#" }
+                { icon: <FaYoutube />, href: "#" }
               ].map((social, i) => (
                 <motion.a
                   key={i}
                   href={social.href}
                   whileHover={{ y: -3, scale: 1.05 }}
-                  className="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white/20 hover:bg-white/10 transition-all duration-300 shadow-sm"
+                  className="w-11 h-11 rounded-2xl bg-white/5! border border-white/10 flex items-center justify-center text-white/70! hover:text-white! hover:border-primary/20! hover:bg-primary/10! transition-all duration-300 shadow-sm"
                 >
                   {social.icon}
                 </motion.a>
@@ -49,10 +64,10 @@ const Footer = () => {
 
           {/* Nav Sections */}
           <div className="lg:col-span-2 space-y-8">
-            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20">Academy</h4>
+            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-white/80">Academy</h4>
             <nav className="flex flex-col space-y-4">
               {["Paths", "Courses", "Syllabus", "Mentors"].map((link) => (
-                <a key={link} href="#" className="text-base text-white/40 hover:text-primary transition-all duration-300 font-bold hover:translate-x-1 inline-block">
+                <a key={link} href="#" className="text-base text-white/70! hover:text-primary transition-all duration-300 font-bold hover:translate-x-1 inline-block">
                   {link}
                 </a>
               ))}
@@ -60,17 +75,29 @@ const Footer = () => {
           </div>
 
           <div className="lg:col-span-2 space-y-8">
-            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20">Company</h4>
+            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-white/80">Company</h4>
             <nav className="flex flex-col space-y-4">
               {["About", "Ambassadors", "Impact", "Careers"].map((link) => (
-                <a key={link} href="#" className="text-base text-white/40 hover:text-primary transition-all duration-300 font-bold hover:translate-x-1 inline-block">
+                <a key={link} href="#" className="text-base text-white/70! hover:text-primary transition-all duration-300 font-bold hover:translate-x-1 inline-block">
                   {link}
                 </a>
               ))}
             </nav>
           </div>
 
-          <div className="lg:col-span-3 space-y-8">
+          <div className="lg:col-span-2 space-y-8">
+            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-white/80">Terms and Privacy</h4>
+            <nav className="flex flex-col space-y-4">
+              {["Terms", "Privacy"].map((link) => (
+                <a key={link} href="#" className="text-base text-white/70! hover:text-primary transition-all duration-300 font-bold hover:translate-x-1 inline-block">
+                  {link}
+                </a>
+              ))}
+            </nav>
+          </div>
+
+
+          {/* <div className="lg:col-span-3 space-y-8">
             <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20">Update Feed</h4>
             <p className="text-sm text-white/40 font-medium leading-relaxed">
               Stay synchronized with the latest course drops and platform updates.
@@ -85,24 +112,14 @@ const Footer = () => {
                 Join
               </button>
             </form>
-          </div>
+          </div> */}
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 overflow-hidden">
-          <div className="flex flex-wrap justify-center md:justify-start gap-8">
-            <p className="text-xs text-white/20 font-bold uppercase tracking-widest leading-none">
-              &copy; {year} Blockdot Academy
-            </p>
-            <a href="#" className="text-xs text-white/20 hover:text-white font-bold uppercase tracking-widest transition-colors leading-none">Privacy</a>
-            <a href="#" className="text-xs text-white/20 hover:text-white font-bold uppercase tracking-widest transition-colors leading-none">Terms</a>
-            <a href="#" className="text-xs text-white/20 hover:text-white font-bold uppercase tracking-widest transition-colors leading-none">Security</a>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
-            <span className="text-[10px] font-black text-white/20 uppercase tracking-[0.2em]">Operational: Mainnet Node</span>
-          </div>
+        <div className="pt-1 border-t border-white/5 flex flex items-center justify-center">
+          <p className="text-xs text-center text-white font-bold uppercase tracking-widest leading-none">
+            &copy; {year} Blockdot Academy. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

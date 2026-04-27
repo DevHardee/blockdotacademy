@@ -15,7 +15,7 @@ const NotFound = () => {
   return (
     <section className="pt-8 md:pt-36 h-full lg:min-h-screen pb-40 flex items-center justify-center bg-background">
       <div className="text-center space-y-6">
-        <h1 className="text-6xl md:text-8xl font-bold bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">
+        <h1 className="text-6xl md:text-8xl font-bold bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
           404
         </h1>
 
