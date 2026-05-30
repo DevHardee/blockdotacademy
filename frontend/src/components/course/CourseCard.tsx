@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../ui/card"
+import { Card } from "../ui/card"
 import { Badge } from "../ui/badge"
 import { PlayCircle, Users, Star, Clock } from "lucide-react"
 import { cn } from "@/lib/utils"
