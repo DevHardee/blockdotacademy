@@ -9,6 +9,8 @@ import AdminAnalytics from './pages/admin/Analytics'
 import AdminUsers from './pages/admin/Users'
 import AdminEditCourse from './pages/admin/EditCourse'
 import AdminAddCourse from './pages/admin/AddCourse'
+import AdminBlog from './pages/admin/AdminBlog'
+import AdminAddPost from './pages/admin/AdminAddPost'
 import Home from './pages/Home'
 import Login from './pages/auth/Login'
 import SignUp from './pages/auth/Signup'
@@ -17,6 +19,8 @@ import MyCourses from './pages/MyCourses'
 import CourseDetail from './pages/CourseDetail'
 import Profile from './pages/Profile'
 import UserDashboard from './pages/UserDashboard'
+import JobsBoard from './pages/JobsBoard'
+import Blog from './pages/Blog'
 import { Toaster } from "sonner"
 import { AuthProvider, useAuth } from './context/AuthContext'
 import ComingSoon from './sections/ComingSoon'
@@ -34,6 +38,8 @@ const AppRoutes = () => {
           <Route path="/admin/courses/add" element={<AdminAddCourse />} />
           <Route path="/admin/analytics" element={<AdminAnalytics />} />
           <Route path="/admin/users" element={<AdminUsers />} />
+          <Route path="/admin/blog" element={<AdminBlog />} />
+          <Route path="/admin/blog/add" element={<AdminAddPost />} />
           <Route path="/admin/*" element={<Navigate to="/admin/dashboard" replace />} />
         </Routes>
       </AdminLayout>
@@ -65,6 +71,8 @@ const AppRoutes = () => {
         <Route path="/course/:id" element={<CourseDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/jobs" element={<JobsBoard />} />
+        <Route path="/blog" element={<Blog />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </MainLayout>
