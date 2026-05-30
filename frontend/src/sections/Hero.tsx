@@ -57,20 +57,20 @@ const Hero = () => {
 
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="flex flex-col md:flex-row items-center justify-center gap-6 px-4"
         >
-          <Link to="/courses" className="w-full sm:w-auto">
+          <Link to="/courses" className="w-full md:w-auto">
             <Button
               size="lg"
-              className="w-full md:w-auto bg-linear-to-r from-primary to-accent hover:brightness-110 transition-all font-bold px-10 py-7 rounded-2xl text-lg shadow-[0_0_20px_rgba(99,102,241,0.3)] group"
+              className="w-full md:w-72 bg-linear-to-r from-primary to-accent hover:brightness-110 hover:scale-105 transition-all duration-300 font-bold px-10 py-8 rounded-2xl text-lg shadow-[0_0_30px_rgba(41,98,255,0.3)] hover:shadow-[0_0_40px_rgba(41,98,255,0.5)] group h-12"
             >
-              Start learning
+              Start Learning
             </Button>
           </Link>
           <Button
             size="lg"
             variant="ghost"
-            className="w-full md:w-auto hover:bg-accent/10! border border-primary! font-bold px-10 py-7 rounded-2xl text-lg transition-all text-white/80"
+            className="w-full md:w-72 hover:bg-white/5! border-2 border-primary! hover:border-accent! font-bold px-4 py-8 rounded-2xl text-lg transition-all duration-300 text-white/80 hover:text-white h-12"
           >
             Explore Learning Paths
           </Button>

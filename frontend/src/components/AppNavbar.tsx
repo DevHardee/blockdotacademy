@@ -7,7 +7,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 type NavLinkItem = {
   label: string;
-  id: string;
+  id?: string;
+  path?: string;
 };
 
 export function NavBar() {
@@ -19,11 +20,17 @@ export function NavBar() {
     { label: "Home", id: "home" },
     { label: "About", id: "about" },
     { label: "Courses", id: "courses" },
-    { label: "Jobs", id: "jobs" },
-    { label: "Blog", id: "blog" },
+    { label: "Jobs", path: "/jobs" },
+    { label: "Blog", path: "/blog" },
   ];
 
-  const handleScrollOrNavigate = (sectionId: string) => {
+  const handleScrollOrNavigate = (link: NavLinkItem) => {
+    if (link.path) {
+      navigate(link.path);
+      return;
+    }
+
+    const sectionId = link.id || "";
     if (location.pathname !== "/") {
       navigate(`/#${sectionId}`);
     } else {
@@ -38,7 +45,7 @@ export function NavBar() {
         <div className="flex items-center justify-between h-16 px-4">
           {/* Logo */}
           <div
-            onClick={() => navigate("/")}
+            onClick={() => handleScrollOrNavigate({ label: "Home", id: "home" })}
             className="flex cursor-pointer items-center gap-1 group"
           >
             <h2 className="font-black text-xl md:text-2xl tracking-tighter">
@@ -56,13 +63,13 @@ export function NavBar() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex md:gap-8 lg:gap-20">
-            {navLinks.map(({ label, id }) => (
+            {navLinks.map((link) => (
               <div
-                key={id}
-                onClick={() => handleScrollOrNavigate(id)}
+                key={link.label}
+                onClick={() => handleScrollOrNavigate(link)}
                 className="relative bg-none! py-2 text-sm font-medium text-foreground hover:text-primary transition-colors after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bg-primary after:bottom-0 after:left-0 after:transition-transform after:duration-500 after:origin-left hover:after:scale-x-100 cursor-pointer"
               >
-                {label}
+                {link.label}
               </div>
             ))}
           </nav>
@@ -87,16 +94,16 @@ export function NavBar() {
               </SheetTrigger>
               <SheetContent side="right" className="w-[250px] p-6">
                 <nav className="flex flex-col mt-6 space-y-6">
-                  {navLinks.map(({ label, id }) => (
+                  {navLinks.map((link) => (
                     <div
-                      key={id}
+                      key={link.label}
                       onClick={() => {
-                        handleScrollOrNavigate(id);
+                        handleScrollOrNavigate(link);
                         setOpen(false);
                       }}
                       className="text-lg font-medium text-foreground transition-colors"
                     >
-                      {label}
+                      {link.label}
                     </div>
                   ))}
                   <div>
