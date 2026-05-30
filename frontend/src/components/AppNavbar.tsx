@@ -19,6 +19,8 @@ export function NavBar() {
     { label: "Home", id: "home" },
     { label: "About", id: "about" },
     { label: "Courses", id: "courses" },
+    { label: "Jobs", id: "jobs" },
+    { label: "Blog", id: "blog" },
   ];
 
   const handleScrollOrNavigate = (sectionId: string) => {

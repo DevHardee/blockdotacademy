@@ -18,16 +18,16 @@ import {
   BookOpen,
   BarChart2,
   Settings,
-  ChevronRight,
+  Layout,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import { useAuth } from "@/context/AuthContext";
-import { motion } from "motion/react";
 
 const adminNav = [
   { title: "Dashboard", url: "/admin/dashboard", icon: LayoutDashboard },
   { title: "Courses", url: "/admin/courses", icon: BookOpen },
+  { title: "Blog", url: "/admin/blog", icon: Layout },
   { title: "Users", url: "/admin/users", icon: Users },
   { title: "Analytics", url: "/admin/analytics", icon: BarChart2 },
   { title: "Settings", url: "/admin/settings", icon: Settings },
@@ -99,7 +99,6 @@ export function AdminSidebar() {
 
       <SidebarFooter className="border-t border-sidebar-border/40 p-4 mt-auto">
         <div className="flex flex-col space-y-3">
-          {/* Simple mode dropdown */}
           <div className="relative">
             <select
               value={isAdmin ? "admin" : "user"}
