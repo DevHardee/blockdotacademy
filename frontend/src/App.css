@@ -1,0 +1,181 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: initial;
+}
+
+/* Example styles */
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #0288d1aa);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #4dd0e1aa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.carousel-track {
+  animation: slide 30s linear infinite;
+}
+
+.carousel-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Tailwind inline theme mappings */
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-tertiary: var(--tertiary);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+}
+
+/* === THEME VARIABLES (DARK DEFAULT) === */
+:root {
+  --radius: 0.625rem;
+  --background: #030303;
+  /* Ultimate dark background */
+  --foreground: #fafafa;
+  /* Crisp white */
+  --card: #0a0a0a;
+  /* Deep black-purple for cards */
+  --card-foreground: #fafafa;
+  --popover: #030303;
+  --popover-foreground: #fafafa;
+
+  --primary: #2962ff;
+  /* Vibrant blue */
+  --primary-foreground: #ffffff;
+
+  --secondary: #a855f7;
+  /* Vibrant purple */
+  --secondary-foreground: #ffffff;
+
+  --tertiary: #00f5ff;
+
+  --accent: #0ea5e9;
+  /* Bright sky blue */
+  --accent-foreground: #ffffff;
+
+  --muted: #111111;
+  --muted-foreground: #a1a1aa;
+
+  --border: #1a1a1a;
+  --input: #1a1a1a;
+  --ring: #6366f1;
+
+  --shadow-primary: 0 0 40px rgba(99, 102, 241, 0.2);
+  --shadow-secondary: 0 0 40px rgba(168, 85, 247, 0.2);
+  --shadow-accent: 0 0 40px rgba(14, 165, 233, 0.2);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.8);
+  --shadow-glow: 0 0 60px rgba(99, 102, 241, 0.15);
+
+  /* Sidebar palette */
+  --sidebar: #030303;
+  --sidebar-foreground: #fafafa;
+  --sidebar-primary: #6366f1;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #111111;
+  --sidebar-accent-foreground: #fafafa;
+  --sidebar-border: #1a1a1a;
+  --sidebar-ring: #6366f1;
+
+  /* Sonner toast colors */
+  --success: #10b981;
+  --success-foreground: #ffffff;
+}
+
+/* Base layer */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Sonner toast customization - use primary color for success toasts */
+[data-sonner-toast][data-type="success"] {
+  background: var(--primary) !important;
+  color: #ffffff !important;
+  border-color: var(--primary) !important;
+}
+
+[data-sonner-toast][data-type="success"] [data-icon] {
+  color: #ffffff !important;
+}
+
+[data-sonner-toast][data-type="success"] [data-close-button] {
+  color: #ffffff !important;
+}
