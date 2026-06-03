@@ -70,10 +70,35 @@ const Partners = () => {
           </motion.p>
         </div>
 
-        {/* Partner Logos Carousel (Animated on all screens) */}
+        {/* Partner Logos Carousel */}
         <div className="relative mb-20 md:mb-32 group overflow-hidden">
+          {/* Mobile View: Static Grid with entrance animations */}
+          <div className="grid grid-cols-2 gap-4 md:hidden mb-10">
+            {partners.map((partner, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ 
+                  delay: i * 0.1,
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 15
+                }}
+                className="px-6 py-8 rounded-2xl bg-white/5 border border-white/5 flex flex-col items-center justify-center text-center backdrop-blur-sm"
+              >
+                <h3 className="text-sm font-black text-white/70 tracking-tighter uppercase italic">
+                  {partner.name}
+                </h3>
+                <span className="text-[8px] text-primary/60 font-medium uppercase mt-2">{partner.type}</span>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Desktop View: Infinite Carousel */}
           <motion.div
-            className="flex items-center gap-6 md:gap-12 py-10"
+            className="hidden md:flex items-center gap-6 md:gap-12 py-10"
             animate={{ x: [0, "-50%"] }}
             transition={{
               duration: 40,
@@ -96,9 +121,9 @@ const Partners = () => {
             ))}
           </motion.div>
 
-          {/* Fade Overlays */}
-          <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-linear-to-r from-[#030303] to-transparent z-10 pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-linear-to-l from-[#030303] to-transparent z-10 pointer-events-none" />
+          {/* Fade Overlays (Desktop Only) */}
+          <div className="hidden md:block absolute inset-y-0 left-0 w-16 md:w-32 bg-linear-to-r from-[#030303] to-transparent z-10 pointer-events-none" />
+          <div className="hidden md:block absolute inset-y-0 right-0 w-16 md:w-32 bg-linear-to-l from-[#030303] to-transparent z-10 pointer-events-none" />
         </div>
 
         {/* Impact Stats */}

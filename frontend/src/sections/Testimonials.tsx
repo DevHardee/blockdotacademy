@@ -71,14 +71,8 @@ const Testimonials = () => {
 
       {/* Desktop Infinite Carousel (Visible on MD+) */}
       <div className="hidden md:flex relative overflow-hidden">
-        <motion.div
-          className="flex gap-6 py-10 px-4"
-          animate={{ x: [0, "-50%"] }}
-          transition={{
-            duration: 40,
-            repeat: Infinity,
-            ease: "linear"
-          }}
+        <div
+          className="flex gap-6 py-10 px-4 animate-infinite-scroll pause-on-hover"
         >
           {doubleStories.map((story, i) => (
             <div
@@ -109,11 +103,11 @@ const Testimonials = () => {
               </div>
             </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Mask Fades */}
-        <div className="hidden md:block absolute inset-y-0 left-0 w-40 bg-linear-to-r from-[#030303] to-transparent z-10 pointer-events-none" />
-        <div className="hidden md:block absolute inset-y-0 right-0 w-40 bg-linear-to-l from-[#030303] to-transparent z-10 pointer-events-none" />
+        <div className="hidden lg:block absolute inset-y-0 left-0 w-40 bg-linear-to-r from-[#030303] to-transparent z-10 pointer-events-none" />
+        <div className="hidden lg:block absolute inset-y-0 right-0 w-40 bg-linear-to-l from-[#030303] to-transparent z-10 pointer-events-none" />
       </div>
 
       {/* Mobile Manual Slider (Visible on small screens only) */}
