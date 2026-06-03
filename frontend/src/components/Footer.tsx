@@ -153,7 +153,7 @@ const Footer = () => {
             </p>
           </div>
 
-          <div className="order-1 md:order-2">
+          <div className="hidden md:block order-1 md:order-2">
             <button
               onClick={scrollToTop}
               className="group relative w-14 h-14 rounded-full bg-linear-to-r from-primary to-accent p-px overflow-hidden shadow-lg hover:shadow-primary/40 transition-all active:scale-95"

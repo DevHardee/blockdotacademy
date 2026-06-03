@@ -62,7 +62,7 @@ export function NavBar() {
           /> */}
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex md:gap-8 lg:gap-20">
+          <nav className="hidden lg:flex md:gap-8 lg:gap-20">
             {navLinks.map((link) => (
               <div
                 key={link.label}
@@ -74,7 +74,7 @@ export function NavBar() {
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-1">
             <Button variant="outline" size="sm" className="text-sm" onClick={() => navigate("/login")}>
               Log in
             </Button>
@@ -85,7 +85,7 @@ export function NavBar() {
           </div>
 
           {/* Mobile Menu */}
-          <div className="md:hidden flex items-center gap-2">
+          <div className="lg:hidden flex items-center gap-2">
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
