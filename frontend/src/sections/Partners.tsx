@@ -70,10 +70,10 @@ const Partners = () => {
           </motion.p>
         </div>
 
-        {/* Partner Logos Carousel */}
-        <div className="relative mb-32 group overflow-hidden">
+        {/* Partner Logos Carousel (Animated on all screens) */}
+        <div className="relative mb-20 md:mb-32 group overflow-hidden">
           <motion.div
-            className="flex items-center gap-12 py-10"
+            className="flex items-center gap-6 md:gap-12 py-10"
             animate={{ x: [0, "-50%"] }}
             transition={{
               duration: 40,
@@ -86,8 +86,8 @@ const Partners = () => {
                 key={i}
                 className="shrink-0 group/partner"
               >
-                <div className="px-10 py-6 rounded-2xl bg-white/5 border border-white/5 hover:border-primary/20 hover:bg-white/[0.07] transition-all duration-500 backdrop-blur-sm">
-                  <h3 className="text-xl md:text-2xl font-black text-white/80 group-hover/partner:text-white transition-colors tracking-tighter uppercase italic">
+                <div className="px-6 py-4 md:px-10 md:py-6 rounded-2xl bg-white/5 border border-white/5 hover:border-primary/20 hover:bg-white/[0.07] transition-all duration-500 backdrop-blur-sm">
+                  <h3 className="text-lg md:text-2xl font-black text-white/80 group-hover/partner:text-white transition-colors tracking-tighter uppercase italic">
                     {partner.name}
                   </h3>
                   <div className="mt-1 h-0.5 w-0 group-hover/partner:w-full bg-primary transition-all duration-500 rounded-full" />
@@ -97,8 +97,8 @@ const Partners = () => {
           </motion.div>
 
           {/* Fade Overlays */}
-          <div className="hidden md:block absolute inset-y-0 left-0 w-32 bg-linear-to-r from-[#030303] to-transparent z-10 pointer-events-none" />
-          <div className="hidden md:block absolute inset-y-0 right-0 w-32 bg-linear-to-l from-[#030303] to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-linear-to-r from-[#030303] to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-linear-to-l from-[#030303] to-transparent z-10 pointer-events-none" />
         </div>
 
         {/* Impact Stats */}
