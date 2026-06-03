@@ -1,4 +1,6 @@
-import { motion } from "motion/react"
+import { motion, AnimatePresence } from "motion/react"
+import { useState } from "react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const successStories = [
   {
@@ -32,7 +34,16 @@ const successStories = [
 ]
 
 const Testimonials = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
   const doubleStories = [...successStories, ...successStories];
+
+  const nextStory = () => {
+    setCurrentIndex((prev) => (prev + 1) % successStories.length);
+  };
+
+  const prevStory = () => {
+    setCurrentIndex((prev) => (prev - 1 + successStories.length) % successStories.length);
+  };
 
   const QuoteIcon = () => (
     <svg width="24" height="18" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-primary group-hover:text-white transition-colors duration-500">
@@ -58,16 +69,10 @@ const Testimonials = () => {
         </motion.div>
       </div>
 
-      <div className="relative flex overflow-hidden">
-        <motion.div
-          className="flex gap-6 py-10 px-4"
-          animate={{ x: [0, "-50%"] }}
-          transition={{
-            duration: 40,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          whileHover={{ animationPlayState: "paused" }}
+      {/* Desktop Infinite Carousel (Visible on MD+) */}
+      <div className="hidden md:flex relative overflow-hidden">
+        <div
+          className="flex gap-6 py-10 px-4 animate-infinite-scroll pause-on-hover"
         >
           {doubleStories.map((story, i) => (
             <div
@@ -75,7 +80,7 @@ const Testimonials = () => {
               className="inline-block w-[320px] md:w-[400px]"
             >
               <div className="h-[400px] md:h-[420px] p-8 md:p-12 rounded-3xl bg-[#080808] border border-white/[0.03] hover:border-primary/40 transition-all duration-500 relative flex flex-col group overflow-hidden shadow-2xl">
-                {/* Selection Highlight (Matching image style) */}
+                {/* Selection Highlight */}
                 <div className="absolute inset-x-0 bottom-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/0 group-hover:bg-primary/[0.05] blur-3xl transition-colors duration-500 rounded-full" />
 
@@ -98,11 +103,74 @@ const Testimonials = () => {
               </div>
             </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Mask Fades */}
-        <div className="hidden md:block absolute inset-y-0 left-0 w-40 bg-linear-to-r from-[#030303] to-transparent z-10 pointer-events-none" />
-        <div className="hidden md:block absolute inset-y-0 right-0 w-40 bg-linear-to-l from-[#030303] to-transparent z-10 pointer-events-none" />
+        <div className="hidden lg:block absolute inset-y-0 left-0 w-40 bg-linear-to-r from-[#030303] to-transparent z-10 pointer-events-none" />
+        <div className="hidden lg:block absolute inset-y-0 right-0 w-40 bg-linear-to-l from-[#030303] to-transparent z-10 pointer-events-none" />
+      </div>
+
+      {/* Mobile Manual Slider (Visible on small screens only) */}
+      <div className="md:hidden px-4">
+        <div className="relative h-[450px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+              className="absolute inset-0"
+            >
+              <div className="h-full p-8 rounded-3xl bg-[#080808] border border-white/[0.03] relative flex flex-col shadow-2xl">
+                <div className="absolute inset-x-0 bottom-0 h-1 bg-primary" />
+
+                <div className="mb-8">
+                  <QuoteIcon />
+                </div>
+
+                <p className="text-lg font-medium text-white/80 leading-relaxed mb-auto">
+                  {successStories[currentIndex].quote}
+                </p>
+
+                <div className="mt-8 pt-8 border-t border-white/[0.05]">
+                  <div className="flex items-center gap-2">
+                    <span className="w-4 h-px bg-primary" />
+                    <span className="text-sm font-black uppercase tracking-[0.2em] text-primary">
+                      {successStories[currentIndex].name}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Mobile Navigation Controls */}
+        <div className="flex items-center justify-center gap-8 mt-10">
+          <button
+            onClick={prevStory}
+            className="w-12 h-12 rounded-full border border-primary! flex items-center justify-center text-white/40 hover:text-white transition-all"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+
+          <div className="flex gap-2">
+            {successStories.map((_, i) => (
+              <div
+                key={i}
+                className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${i === currentIndex ? "bg-primary w-4" : "bg-white/10"}`}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={nextStory}
+            className="w-12 h-12 rounded-full border border-primary! flex items-center justify-center text-white/40 hover:text-white transition-all"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+        </div>
       </div>
     </section>
   )
