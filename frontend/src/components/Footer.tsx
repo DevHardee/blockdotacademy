@@ -69,15 +69,16 @@ const Footer = () => {
 
             <div className="flex justify-center md:justify-start gap-4">
               {[
-                { icon: <FaTelegram />, href: "#" },
-                { icon: <FaX />, href: "#" },
-                { icon: <FaInstagram />, href: "#" },
-                { icon: <FaLinkedinIn />, href: "#" },
-                { icon: <FaYoutube />, href: "#" }
+                { icon: <FaTelegram />, href: "#", label: "Telegram" },
+                { icon: <FaX />, href: "#", label: "Twitter" },
+                { icon: <FaInstagram />, href: "#", label: "Instagram" },
+                { icon: <FaLinkedinIn />, href: "#", label: "LinkedIn" },
+                { icon: <FaYoutube />, href: "#", label: "YouTube" }
               ].map((social, i) => (
                 <motion.a
                   key={i}
                   href={social.href}
+                  aria-label={social.label}
                   whileHover={{ y: -5, scale: 1.1 }}
                   className="w-12 h-12 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center text-accent! hover:text-primary! hover:border-primary/50 transition-all duration-300 shadow-lg hover:shadow-primary/20 backdrop-blur-sm"
                 >
@@ -156,6 +157,7 @@ const Footer = () => {
           <div className="hidden md:block order-1 md:order-2">
             <button
               onClick={scrollToTop}
+              aria-label="Scroll to top"
               className="group relative w-14 h-14 rounded-full bg-linear-to-r from-primary to-accent p-px overflow-hidden shadow-lg hover:shadow-primary/40 transition-all active:scale-95"
             >
               <div className="relative flex items-center justify-center text-white">

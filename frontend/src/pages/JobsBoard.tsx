@@ -5,7 +5,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
     ChevronRight,
-    Plus,
     ArrowRight,
     TrendingUp,
     Shield
@@ -73,18 +72,26 @@ const JobsBoard = () => {
     const [activeFilter, setActiveFilter] = useState("All Roles");
 
     return (
-        <div className="min-h-screen bg-[#030303] py-24 text-white">
-            <MaxWidthWrapper className="space-y-12">
+        <div className="min-h-screen bg-[#030303] text-white overflow-hidden relative">
+            {/* Background Glows matching Home.tsx */}
+            <div className="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
+                <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-linear-to-r from-primary to-accent opacity-10 blur-[150px] rounded-full mix-blend-screen" />
+                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-linear-to-l from-primary to-accent opacity-10 blur-[150px] rounded-full mix-blend-screen" />
+            </div>
+
+            <MaxWidthWrapper className="space-y-12 relative z-10 py-0 md:py-20">
 
                 {/* Header Section */}
-                <div className="space-y-6 pt-10">
-                    <div className="space-y-2">
-                        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">
-                            BLOCKCHAIN V1.0 CAREERS
-                        </p>
-                        <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-[0.95] max-w-2xl">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="space-y-6 pt-10"
+                >
+                    <div className="space-y-4">
+                        <h1 className="text-4xl! md:text-5xl! xl:text-7xl! font-black tracking-tight leading-[0.95] max-w-2xl">
                             BUILD THE <br />
-                            <span className="text-primary italic">FUTURE</span> ECONOMY.
+                            <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent italic">FUTURE</span> ECONOMY.
                         </h1>
                     </div>
 
@@ -92,11 +99,8 @@ const JobsBoard = () => {
                         <p className="text-lg text-white/40 font-medium leading-relaxed max-w-xl">
                             The kinetic monolith of career growth. Access exclusive roles from the most innovative Web3 and AI startups before they hit the public market.
                         </p>
-                        <Button className="rounded-2xl px-8 h-14 bg-primary hover:bg-primary/90 text-white font-black uppercase tracking-widest text-[11px] border-0 shadow-lg shadow-primary/20 flex items-center gap-2">
-                            Post a Role <Plus className="h-4 w-4" />
-                        </Button>
                     </div>
-                </div>
+                </motion.div>
 
                 {/* Filters */}
                 <div className="flex items-center gap-3 overflow-x-auto no-scrollbar py-2">
@@ -104,9 +108,9 @@ const JobsBoard = () => {
                         <button
                             key={filter}
                             onClick={() => setActiveFilter(filter)}
-                            className={`px-6 h-12 rounded-2xl text-[11px] font-black uppercase tracking-widest transition-all whitespace-nowrap ${activeFilter === filter
-                                ? "bg-primary text-white border-primary shadow-[0_0_15px_rgba(41,98,255,0.4)]"
-                                : "bg-[#111111] text-white/40 hover:text-white border border-white/5"
+                            className={`px-6 h-12 rounded-2xl text-[11px] font-black! uppercase tracking-widest transition-all whitespace-nowrap ${activeFilter === filter
+                                ? "bg-accent! text-white border-primary! shadow-[0_0_15px_rgba(41,98,255,0.4)]"
+                                : "bg-[#111111]! text-white/40! hover:text-white! border border-white/5!"
                                 }`}
                         >
                             {filter}
@@ -115,21 +119,23 @@ const JobsBoard = () => {
                 </div>
 
                 {/* Job Cards Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
 
                     {/* Main Listings */}
-                    <div className="lg:col-span-8 space-y-6">
+                    <div className="lg:col-span-8 space-y-8">
                         {jobRoles.map((job, i) => (
                             <motion.div
                                 key={job.id}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
                                 transition={{ delay: i * 0.1 }}
                             >
-                                <Card className="bg-[#0a0a0a] border-white/5 rounded-[2.5rem] p-8 hover:border-white/10 transition-all duration-500 group">
-                                    <div className="flex flex-col md:flex-row gap-6">
+                                <Card className="bg-white/5! border-white/5! rounded-[2.5rem] p-8 hover:border-primary/30! transition-all duration-500 group relative overflow-hidden backdrop-blur-sm!">
+                                    <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    <div className="flex flex-col md:flex-row gap-6 relative z-10">
                                         {/* Logo Column */}
-                                        <div className={`w-16 h-16 rounded-2xl ${job.logoBg} flex items-center justify-center shrink-0 border border-white/5`}>
+                                        <div className={`w-16 h-16 rounded-2xl ${job.logoBg} flex items-center justify-center shrink-0 border border-white/5 shadow-inner`}>
                                             <span className="text-xl font-black text-white">{job.logo}</span>
                                         </div>
 
@@ -158,7 +164,7 @@ const JobsBoard = () => {
                                                     </span>
                                                 ))}
                                                 {job.salary && (
-                                                    <span className="px-3 py-1.5 rounded-lg bg-emerald-500/5 text-[10px] font-black text-emerald-500 tracking-wider border border-emerald-500/10">
+                                                    <span className="px-3 py-1.5 rounded-lg bg-emerald-500/10 text-[10px] font-black text-emerald-500 tracking-wider border border-emerald-500/20">
                                                         {job.salary}
                                                     </span>
                                                 )}
@@ -178,7 +184,7 @@ const JobsBoard = () => {
                                                     </div>
                                                 )}
 
-                                                <Button className={`ml-auto rounded-xl px-10 h-12 ${job.action === "Apply Now" ? "bg-primary text-white shadow-[0_0_15px_rgba(41,98,255,0.2)]" : "bg-white/5 text-white/40 border border-white/10 hover:bg-white/10"} font-black uppercase tracking-widest text-[10px]`}>
+                                                <Button className={`ml-auto rounded-xl px-10 h-12 ${job.action === "Apply Now" ? "bg-linear-to-r from-primary to-accent text-white shadow-lg shadow-primary/20" : "bg-white/5 text-white/40 border border-white/10 hover:bg-white/10"} font-black uppercase tracking-widest text-[10px] hover:scale-105 transition-transform`}>
                                                     {job.action}
                                                 </Button>
                                             </div>
@@ -188,8 +194,12 @@ const JobsBoard = () => {
                             </motion.div>
                         ))}
 
-                        {/* Pagination */}
-                        <div className="flex items-center justify-center gap-2 pt-8">
+                        {/* Pagination with motion */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            className="flex items-center justify-center gap-2 pt-8"
+                        >
                             <span className="text-[10px] font-black uppercase tracking-widest text-white/20 mr-4 hidden md:block">
                                 SHOWING 1-12 OF 248 OPPORTUNITIES
                             </span>
@@ -210,56 +220,69 @@ const JobsBoard = () => {
                                     <ChevronRight className="h-4 w-4" />
                                 </Button>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
 
                     {/* Sidebar / Promo Area */}
-                    <div className="lg:col-span-4 space-y-8">
-                        <Card className="bg-[#0a0a0a] border-white/5 rounded-[2.5rem] overflow-hidden group">
-                            <CardContent className="p-10 space-y-8">
-                                <div className="space-y-4">
-                                    <h3 className="text-3xl font-black leading-tight">
-                                        LEVEL UP <br /> YOUR SKILLS?
-                                    </h3>
-                                    <p className="text-base text-white/40 font-medium leading-relaxed">
-                                        Most companies on Blockdot require a Certification level of V1.0 or higher. Finish your Tracing Lab modules to unlock these premium roles.
+                    <div className="lg:col-span-4 space-y-12">
+                        <motion.div
+                            initial={{ opacity: 0, x: 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                        >
+                            <Card className="bg-white/5 border-white/5 rounded-[2.5rem] overflow-hidden group backdrop-blur-sm">
+                                <CardContent className="p-10 space-y-8">
+                                    <div className="space-y-4">
+                                        <h3 className="text-3xl font-black leading-tight">
+                                            LEVEL UP <br /> YOUR <span className="text-primary italic">SKILLS?</span>
+                                        </h3>
+                                        <p className="text-base text-white/40 font-medium leading-relaxed">
+                                            Most companies on Blockdot require a Certification level of V1.0 or higher. Finish your Tracing Lab modules to unlock these premium roles.
+                                        </p>
+                                    </div>
+
+                                    <Button variant="link" className="p-0 h-auto text-primary font-black uppercase tracking-widest text-xs flex items-center gap-2 hover:gap-3 transition-all">
+                                        Go to Courses <ArrowRight className="h-4 w-4" />
+                                    </Button>
+
+                                    <div className="aspect-square relative rounded-[2rem] overflow-hidden bg-slate-900/50 border border-white/5 flex items-center justify-center group-hover:bg-slate-900/30 transition-all">
+                                        <div className="absolute inset-0 bg-linear-to-b from-transparent to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                        <div className="relative z-10 flex flex-col items-center gap-4">
+                                            <div className="w-24 h-24 rounded-full border-2 border-primary/20 flex items-center justify-center bg-primary/5 shadow-[0_0_20px_rgba(59,130,246,0.2)]">
+                                                <Shield className="h-10 w-10 text-primary" />
+                                            </div>
+                                            <Badge className="bg-primary/20 text-primary border-primary/30 rounded-full px-4 py-1.5 text-[9px] font-black uppercase tracking-[0.2em]">
+                                                CYBERSECURITY
+                                            </Badge>
+                                        </div>
+                                        <div className="absolute w-64 h-64 border border-white/5 rounded-full animate-[spin_20s_linear_infinite] opacity-20" />
+                                        <div className="absolute w-48 h-48 border border-primary/10 rounded-full animate-[spin_15s_linear_infinite_reverse] opacity-40 ml-4" />
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, x: 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2 }}
+                        >
+                            <Card className="bg-linear-to-br from-primary to-accent rounded-[2.5rem] p-10 border-0 text-white space-y-6 relative overflow-hidden group shadow-2xl shadow-primary/20">
+                                <TrendingUp className="absolute -right-8 -bottom-8 w-48 h-48 opacity-10 rotate-12 group-hover:scale-110 transition-transform duration-500" />
+                                <div className="space-y-4 relative z-10">
+                                    <h4 className="text-3xl font-black leading-tight uppercase tracking-tight">
+                                        Talent <br /> Analytics
+                                    </h4>
+                                    <p className="text-sm font-medium text-white/80 leading-relaxed">
+                                        Companies are currently looking for Solidity Developers and Quant Researchers.
                                     </p>
                                 </div>
-
-                                <Button variant="link" className="p-0 h-auto text-primary font-black uppercase tracking-widest text-xs flex items-center gap-2 hover:gap-3 transition-all">
-                                    Go to Courses <ArrowRight className="h-4 w-4" />
+                                <Button className="w-full rounded-xl bg-white text-primary hover:bg-white/90 font-black uppercase tracking-widest text-[10px] border-0 relative z-10 h-14 shadow-sm group-hover:scale-[1.02] transition-transform">
+                                    Learn More
                                 </Button>
-
-                                <div className="aspect-square relative rounded-[2rem] overflow-hidden bg-slate-900/50 border border-white/5 flex items-center justify-center group-hover:bg-slate-900/30 transition-all">
-                                    <div className="absolute inset-0 bg-linear-to-b from-transparent to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                    <div className="relative z-10 flex flex-col items-center gap-4">
-                                        <div className="w-24 h-24 rounded-full border-2 border-primary/20 flex items-center justify-center bg-primary/5 shadow-[0_0_20px_rgba(59,130,246,0.2)]">
-                                            <Shield className="h-10 w-10 text-primary" />
-                                        </div>
-                                        <Badge className="bg-primary/20 text-primary border-primary/30 rounded-full px-4 py-1.5 text-[9px] font-black uppercase tracking-[0.2em]">
-                                            CYBERSECURITY
-                                        </Badge>
-                                    </div>
-                                    <div className="absolute w-64 h-64 border border-white/5 rounded-full animate-[spin_20s_linear_infinite] opacity-20" />
-                                    <div className="absolute w-48 h-48 border border-primary/10 rounded-full animate-[spin_15s_linear_infinite_reverse] opacity-40 ml-4" />
-                                </div>
-                            </CardContent>
-                        </Card>
-
-                        <Card className="bg-linear-to-br from-primary to-accent rounded-[2.5rem] p-10 border-0 text-white space-y-6 relative overflow-hidden">
-                            <TrendingUp className="absolute -right-8 -bottom-8 w-48 h-48 opacity-10 rotate-12" />
-                            <div className="space-y-2 relative z-10">
-                                <h4 className="text-2xl font-black leading-tight uppercase tracking-tight">
-                                    Talent <br /> Analytics
-                                </h4>
-                                <p className="text-sm font-medium text-white/80">
-                                    Companies are currently looking for Solidity Developers and Quant Researchers.
-                                </p>
-                            </div>
-                            <Button className="w-full rounded-xl bg-white text-primary hover:bg-white/90 font-black uppercase tracking-widest text-[10px] border-0 relative z-10 h-12 shadow-sm">
-                                Learn More
-                            </Button>
-                        </Card>
+                            </Card>
+                        </motion.div>
                     </div>
                 </div>
             </MaxWidthWrapper>

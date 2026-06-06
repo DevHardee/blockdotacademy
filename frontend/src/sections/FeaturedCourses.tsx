@@ -2,6 +2,8 @@ import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "motion/react"
 import { Link } from "react-router-dom"
+import { Button } from "@/components/ui/button"
+import { ArrowRight } from "lucide-react"
 
 const featuredCourses = [
   {
@@ -59,6 +61,7 @@ const FeaturedCourses = () => {
                     <img
                       src={course.image}
                       alt={course.title}
+                      loading="lazy"
                       className="w-full h-full object-cover object-center translate-y-[-10%] group-hover:scale-110 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-linear-to-b from-transparent to-[#0a0a0a]" />
@@ -105,6 +108,21 @@ const FeaturedCourses = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* View All Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-20 text-center"
+        >
+          <Link to="/courses">
+            <Button className="rounded-2xl px-12 h-16 bg-white/5 hover:bg-white/10 text-white font-black uppercase tracking-widest text-[11px] border border-white/10 transition-all duration-300 hover:scale-105 active:scale-95 group shadow-xl">
+              Explorer Full Curriculum <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
+        </motion.div>
       </div>
     </section>
   )
