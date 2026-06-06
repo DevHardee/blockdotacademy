@@ -3,27 +3,39 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { MainLayout } from './layouts/MainLayout'
 import { UserLayout } from './layouts/UserLayout'
 import { AdminLayout } from './layouts/AdminLayout'
-import AdminDashboard from './pages/admin/Dashboard'
-import AdminCourses from './pages/admin/Courses'
-import AdminAnalytics from './pages/admin/Analytics'
-import AdminUsers from './pages/admin/Users'
-import AdminEditCourse from './pages/admin/EditCourse'
-import AdminAddCourse from './pages/admin/AddCourse'
-import AdminBlog from './pages/admin/AdminBlog'
-import AdminAddPost from './pages/admin/AdminAddPost'
-import Home from './pages/Home'
-import Login from './pages/auth/Login'
-import SignUp from './pages/auth/Signup'
-import NotFound from './pages/NotFound'
-import MyCourses from './pages/MyCourses'
-import CourseDetail from './pages/CourseDetail'
-import Profile from './pages/Profile'
-import UserDashboard from './pages/UserDashboard'
-import JobsBoard from './pages/JobsBoard'
-import Blog from './pages/Blog'
 import { Toaster } from "sonner"
 import { AuthProvider, useAuth } from './context/AuthContext'
-import ComingSoon from './sections/ComingSoon'
+import { Suspense, lazy } from 'react'
+import ScrollToTop from './components/ScrollToTop'
+
+// Lazy load components
+const AdminDashboard = lazy(() => import('./pages/admin/Dashboard'))
+const AdminCourses = lazy(() => import('./pages/admin/Courses'))
+const AdminAnalytics = lazy(() => import('./pages/admin/Analytics'))
+const AdminUsers = lazy(() => import('./pages/admin/Users'))
+const AdminEditCourse = lazy(() => import('./pages/admin/EditCourse'))
+const AdminAddCourse = lazy(() => import('./pages/admin/AddCourse'))
+const AdminBlog = lazy(() => import('./pages/admin/AdminBlog'))
+const AdminAddPost = lazy(() => import('./pages/admin/AdminAddPost'))
+const Home = lazy(() => import('./pages/Home'))
+const Login = lazy(() => import('./pages/auth/Login'))
+const SignUp = lazy(() => import('./pages/auth/Signup'))
+const NotFound = lazy(() => import('./pages/NotFound'))
+const MyCourses = lazy(() => import('./pages/MyCourses'))
+const CourseDetail = lazy(() => import('./pages/CourseDetail'))
+const Profile = lazy(() => import('./pages/Profile'))
+const UserDashboard = lazy(() => import('./pages/UserDashboard'))
+const JobsBoard = lazy(() => import('./pages/JobsBoard'))
+const Blog = lazy(() => import('./pages/Blog'))
+const AllCourses = lazy(() => import('./pages/AllCourses'))
+const ComingSoon = lazy(() => import('./sections/ComingSoon'))
+
+// Fallback component
+const PageLoader = () => (
+  <div className="min-h-screen bg-[#030303] flex items-center justify-center">
+    <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin shadow-[0_0_15px_rgba(41,98,255,0.4)]" />
+  </div>
+)
 
 const AppRoutes = () => {
   const { isAuthenticated, isAdmin } = useAuth()
@@ -73,6 +85,7 @@ const AppRoutes = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/jobs" element={<JobsBoard />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/courses" element={<AllCourses />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </MainLayout>
@@ -82,8 +95,11 @@ const AppRoutes = () => {
 export default function App() {
   return (
     <AuthProvider>
+      <ScrollToTop />
       <Toaster position="top-right" richColors closeButton theme="system" />
-      <AppRoutes />
+      <Suspense fallback={<PageLoader />}>
+        <AppRoutes />
+      </Suspense>
     </AuthProvider>
   )
 }
