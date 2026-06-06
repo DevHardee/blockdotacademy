@@ -6,6 +6,7 @@ import { AdminLayout } from './layouts/AdminLayout'
 import { Toaster } from "sonner"
 import { AuthProvider, useAuth } from './context/AuthContext'
 import { Suspense, lazy } from 'react'
+import ScrollToTop from './components/ScrollToTop'
 
 // Lazy load components
 const AdminDashboard = lazy(() => import('./pages/admin/Dashboard'))
@@ -92,6 +93,7 @@ const AppRoutes = () => {
 export default function App() {
   return (
     <AuthProvider>
+      <ScrollToTop />
       <Toaster position="top-right" richColors closeButton theme="system" />
       <Suspense fallback={<PageLoader />}>
         <AppRoutes />
