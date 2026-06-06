@@ -59,6 +59,7 @@ const FeaturedCourses = () => {
                     <img
                       src={course.image}
                       alt={course.title}
+                      loading="lazy"
                       className="w-full h-full object-cover object-center translate-y-[-10%] group-hover:scale-110 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-linear-to-b from-transparent to-[#0a0a0a]" />

@@ -150,6 +150,7 @@ const Testimonials = () => {
         <div className="flex items-center justify-center gap-8 mt-10">
           <button
             onClick={prevStory}
+            aria-label="Previous testimonial"
             className="w-12 h-12 rounded-full border border-primary! flex items-center justify-center text-white/40 hover:text-white transition-all"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -166,6 +167,7 @@ const Testimonials = () => {
 
           <button
             onClick={nextStory}
+            aria-label="Next testimonial"
             className="w-12 h-12 rounded-full border border-primary! flex items-center justify-center text-white/40 hover:text-white transition-all"
           >
             <ChevronRight className="w-6 h-6" />
