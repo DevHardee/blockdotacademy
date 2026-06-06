@@ -28,7 +28,7 @@ export function NavBar() {
 
   const navLinks: NavLinkItem[] = [
     { label: "Home", id: "home" },
-    { label: "About", id: "" },
+    { label: "About", id: "about" },
     { label: "Courses", path: "/courses" },
     { label: "Jobs", path: "/jobs" },
     { label: "Blog", path: "/blog" },
@@ -107,10 +107,10 @@ export function NavBar() {
           </nav>
 
           <div className="hidden lg:flex items-center gap-1">
-            <Button variant="outline" size="sm" className="text-sm" onClick={() => navigate("/login")}>
+            <Button variant="outline" size="sm" className="text-sm ring ring-primary" onClick={() => navigate("/login")}>
               Log in
             </Button>
-            <Button variant="outline" size="sm" className="text-sm ring ring-primary" onClick={() => navigate("/signup")}>
+            <Button variant="outline" size="sm" className="text-sm ring ring-primary bg-primary/80! hover:bg-primary!" onClick={() => navigate("/signup")}>
               Sign up
             </Button>
             {/* <ThemeToggle /> */}
@@ -141,7 +141,7 @@ export function NavBar() {
                   <div>
                     <Button
                       variant="outline"
-                      className="mt-4 w-full"
+                      className="mt-4 w-full ring ring-primary"
                       onClick={() => {
                         navigate("/login");
                         setOpen(false);
@@ -151,7 +151,7 @@ export function NavBar() {
                     </Button>
                     <Button
                       variant="outline"
-                      className="mt-4 w-full ring ring-primary"
+                      className="mt-4 w-full ring ring-primary bg-primary/80! hover:bg-primary!"
                       onClick={() => {
                         navigate("/signup");
                         setOpen(false);

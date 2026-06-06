@@ -27,6 +27,7 @@ const Profile = lazy(() => import('./pages/Profile'))
 const UserDashboard = lazy(() => import('./pages/UserDashboard'))
 const JobsBoard = lazy(() => import('./pages/JobsBoard'))
 const Blog = lazy(() => import('./pages/Blog'))
+const AllCourses = lazy(() => import('./pages/AllCourses'))
 const ComingSoon = lazy(() => import('./sections/ComingSoon'))
 
 // Fallback component
@@ -84,6 +85,7 @@ const AppRoutes = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/jobs" element={<JobsBoard />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/courses" element={<AllCourses />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </MainLayout>
