@@ -14,7 +14,7 @@ interface CourseCardProps {
 export const CourseCard = ({ course, enrolled = false, onEnroll }: CourseCardProps) => (
   <Card
     className={cn(
-      "group relative flex flex-col justify-between h-full bg-[#0a0a0a]! border-white/5! hover:border-accent! transition-all duration-500 rounded-[2.5rem] overflow-hidden p-6",
+      "group relative flex flex-col justify-between h-full bg-[#0a0a0a]! border-primary! hover:border-accent! transition-all duration-500 rounded-[2.5rem] overflow-hidden p-6",
       enrolled && "ring-1! ring-primary/40!"
     )}
   >

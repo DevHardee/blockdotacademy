@@ -73,13 +73,13 @@ const JobsBoard = () => {
 
     return (
         <div className="min-h-screen bg-[#030303] text-white overflow-hidden relative">
-            {/* Background Glows matching Home.tsx */}
+            {/* Background Glow */}
             <div className="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
                 <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-linear-to-r from-primary to-accent opacity-10 blur-[150px] rounded-full mix-blend-screen" />
                 <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-linear-to-l from-primary to-accent opacity-10 blur-[150px] rounded-full mix-blend-screen" />
             </div>
 
-            <MaxWidthWrapper className="space-y-12 relative z-10 py-0 md:py-20">
+            <MaxWidthWrapper className="space-y-12 relative z-10 py-0 md:py-10">
 
                 {/* Header Section */}
                 <motion.div
@@ -89,15 +89,15 @@ const JobsBoard = () => {
                     className="space-y-6 pt-10"
                 >
                     <div className="space-y-4">
-                        <h1 className="text-4xl! md:text-5xl! xl:text-7xl! font-black tracking-tight leading-[0.95] max-w-2xl">
-                            BUILD THE <br />
-                            <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent italic">FUTURE</span> ECONOMY.
+                        <h1 className="text-4xl! md:text-5xl! xl:text-7xl! font-black tracking-tight capitalize leading-[0.95] max-w-4xl">
+                            Shape your career <br />
+                            <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent italic">at the edge of innovation</span>
                         </h1>
                     </div>
 
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-                        <p className="text-lg text-white/40 font-medium leading-relaxed max-w-xl">
-                            The kinetic monolith of career growth. Access exclusive roles from the most innovative Web3 and AI startups before they hit the public market.
+                        <p className="text-base md:text-xl text-white/40 font-medium leading-relaxed max-w-2xl">
+                            Take the next step in your journey with exclusive roles at pioneering Web3 and AI startups. Join the teams building the future, before the rest of the world finds out.
                         </p>
                     </div>
                 </motion.div>
@@ -118,7 +118,7 @@ const JobsBoard = () => {
                     ))}
                 </div>
 
-                {/* Job Cards Grid */}
+                {/* Job Cards Grid */}``
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
 
                     {/* Main Listings */}

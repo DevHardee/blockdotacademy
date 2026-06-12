@@ -27,29 +27,38 @@ const AllCourses = () => {
     }, [searchQuery, activeCategory])
 
     return (
-        <div className="min-h-screen bg-[#030303] text-white pt-20 pb-32 relative overflow-hidden">
-            {/* Background Glows matching Home.tsx */}
+        <div className="min-h-screen bg-[#030303] text-white relative pt-10 overflow-hidden">
+            {/* Background Glow */}
             <div className="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
                 <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-linear-to-r from-primary to-accent opacity-10 blur-[150px] rounded-full mix-blend-screen" />
                 <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-linear-to-l from-primary to-accent opacity-10 blur-[150px] rounded-full mix-blend-screen" />
             </div>
 
-            <MaxWidthWrapper className="relative z-10">
+            <MaxWidthWrapper className="space-y-12 relative z-10 py-0 md:py-10">
                 {/* Header Section */}
-                <div className="mb-20">
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7 }}
-                        className="text-4xl! md:text-5xl! xl:text-7xl! font-black tracking-tighter leading-tight"
-                    >
-                        Master the<br />
-                        <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent italic">Curriculum</span>
-                    </motion.h1>
-                </div>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="space-y-6"
+                >
+                    <div className="space-y-4">
+                        <h1 className="text-4xl! md:text-5xl! xl:text-7xl! font-black tracking-tight capitalize leading-[0.95] max-w-4xl">
+                            Level up your <br />
+                            <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent italic">Web3 skills</span>
+                        </h1>
+                    </div>
+
+                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+                        <p className="text-base md:text-xl text-white/40 font-medium leading-relaxed max-w-2xl">
+                            Curated programs designed to help you navigate, build, and thrive in the decentralized economy.
+                        </p>
+                    </div>
+                </motion.div>
+
 
                 {/* Filters Section */}
-                <div className="flex flex-col lg:flex-row gap-8 items-center justify-between mb-24">
+                <div className="flex flex-col lg:flex-row gap-8 items-center justify-between mb-10 md:mb-24">
                     <div className="flex items-center gap-3 overflow-x-auto w-full lg:w-auto no-scrollbar pb-4 lg:pb-0">
                         {categories.map((cat) => (
                             <button

@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button"
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { motion, type Variants } from "motion/react"
 
 const Hero = () => {
+  const navigate = useNavigate()
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -59,16 +61,16 @@ const Hero = () => {
           variants={itemVariants}
           className="flex flex-col md:flex-row items-center justify-center gap-6 px-4"
         >
-          <Link to="/courses" className="w-full md:w-auto">
-            <Button
-              size="lg"
-              className="w-full md:w-72 bg-linear-to-r from-primary to-accent hover:brightness-110 hover:scale-105 transition-all duration-300 font-bold px-10 py-8 rounded-2xl text-lg shadow-[0_0_30px_rgba(41,98,255,0.3)] hover:shadow-[0_0_40px_rgba(41,98,255,0.5)] group h-12"
-            >
-              Start Learning
-            </Button>
-          </Link>
           <Button
             size="lg"
+            onClick={() => navigate("/courses")}
+            className="w-full md:w-72 bg-linear-to-r from-primary to-accent hover:brightness-110 hover:scale-105 transition-all duration-300 font-bold px-10 py-8 rounded-2xl text-lg shadow-[0_0_30px_rgba(41,98,255,0.3)] hover:shadow-[0_0_40px_rgba(41,98,255,0.5)] group h-12"
+          >
+            Start Learning
+          </Button>
+          <Button
+            size="lg"
+            onClick={() => navigate("/courses")}
             variant="ghost"
             className="w-full md:w-72 hover:bg-white/5! border-2 border-primary! hover:border-accent! font-bold px-4 py-8 rounded-2xl text-lg transition-all duration-300 text-white/80 hover:text-white h-12"
           >
