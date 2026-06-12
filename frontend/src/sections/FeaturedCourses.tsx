@@ -118,8 +118,8 @@ const FeaturedCourses = () => {
           className="mt-20 text-center"
         >
           <Link to="/courses">
-            <Button className="rounded-2xl px-12 h-16 bg-white/5 hover:bg-white/10 text-white font-black uppercase tracking-widest text-[11px] border border-white/10 transition-all duration-300 hover:scale-105 active:scale-95 group shadow-xl">
-              Explorer Full Curriculum <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            <Button className="rounded-2xl px-12! h-16 bg-white/5! hover:bg-white/10! text-white font-black! uppercase tracking-widest text-sm md:text-base border! border-white/10! transition-all duration-300 hover:scale-105 active:scale-95 group shadow-xl">
+              View All Courses <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>
         </motion.div>
