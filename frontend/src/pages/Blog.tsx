@@ -11,7 +11,7 @@ const posts = [
         id: 1,
         title: "The Future of Algorithmic Trading",
         excerpt: "Exploring the convergence of high-frequency execution and predictive neural networks in the modern market landscape.",
-        category: "FEATURED ANALYSIS",
+        category: "FEATURED POST",
         date: "8 min read",
         author: "Dr. Elias Thorne",
         authorRole: "Head of Quantitative Research",
@@ -73,19 +73,27 @@ const Blog = () => {
                 <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-linear-to-l from-primary to-accent opacity-10 blur-[150px] rounded-full mix-blend-screen" />
             </div>
 
-            {/* Header Section */}
             <MaxWidthWrapper className="relative z-10">
-                <div className="mb-10 md:mb-16">
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7 }}
-                        className="text-4xl! md:text-5xl! xl:text-7xl! font-black tracking-tighter leading-tight"
-                    >
-                        Tales from the<br />
-                        <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent italic">BlockDot Academy</span>
-                    </motion.h1>
-                </div>
+                {/* Header Section */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="space-y-6"
+                >
+                    <div className="space-y-4">
+                        <h1 className="text-4xl! md:text-5xl! xl:text-7xl! font-black tracking-tight capitalize leading-[0.95] max-w-4xl">
+                            Insights from <br />
+                            <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent italic">the Academy</span>
+                        </h1>
+                    </div>
+
+                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+                        <p className="text-base md:text-xl text-white/40 font-medium leading-relaxed max-w-2xl">
+                            Stories, trends, and tutorials from the front lines of the decentralized economy. Learn how the brightest minds are building in the financial ecosystem.
+                        </p>
+                    </div>
+                </motion.div>
 
                 {/* Featured Post */}
                 {posts.filter(p => p.isFeatured).map(post => (
@@ -95,7 +103,7 @@ const Blog = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="group cursor-pointer mb-32"
+                        className="group cursor-pointer mb-32 mt-10"
                     >
                         <div className="relative aspect-[16/10] md:aspect-[21/9] rounded-[3rem] overflow-hidden border border-white/5 mb-8 shadow-2xl">
                             <img
