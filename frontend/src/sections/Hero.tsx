@@ -26,7 +26,7 @@ const Hero = () => {
   }
 
   return (
-    <section id="home" className="relative flex items-center justify-center py-14 md:py-28 bg-[#030303] overflow-hidden">
+    <section id="home" className="relative flex items-center justify-center py-14 md:py-18 bg-[#030303] overflow-hidden">
       {/* Background Glows */}
       <div className="absolute top-1/4 -left-20 w-96 h-96 bg-primary/20 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-secondary/10 rounded-full blur-[120px] pointer-events-none" />
