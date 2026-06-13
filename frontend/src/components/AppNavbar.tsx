@@ -69,22 +69,21 @@ export function NavBar() {
           {/* Logo */}
           <div
             onClick={() => handleScrollOrNavigate({ label: "Home", id: "home" })}
-            className="flex cursor-pointer items-center gap-1 group"
+            className="flex cursor-pointer items-center gap-3 group shrink-0"
           >
+            <img
+              src="/BDA_logo2.png"
+              alt="logo"
+              className="h-15 w-auto mr-1 object-contain"
+            />
             <h2 className="font-black text-xl md:text-2xl tracking-tighter">
-              <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent group-hover:opacity-80 transition-opacity">
+              <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
                 Blockdot
               </span>
-              <span className="text-foreground">Academy</span>
+              <span className="text-white">Academy</span>
             </h2>
           </div>
-          {/* <img
-            src="/assets/logo4.png"
-            alt="logo"
-            className="w-[20%] bg-background "
-          /> */}
-
-          <nav className="hidden lg:flex md:gap-8 lg:gap-20">
+          <nav className="hidden lg:flex md:gap-8 lg:gap-12">
             {navLinks.map((link) => {
               const isActive = link.path
                 ? location.pathname === link.path
@@ -106,8 +105,8 @@ export function NavBar() {
             })}
           </nav>
 
-          <div className="hidden lg:flex items-center gap-1">
-            <Button variant="outline" size="sm" className="text-sm ring ring-primary" onClick={() => navigate("/login")}>
+          <div className="hidden lg:flex items-center gap-4">
+            <Button variant="outline" size="sm" className="text-sm ring ring-primary transition-colors" onClick={() => navigate("/login")}>
               Log in
             </Button>
             <Button variant="outline" size="sm" className="text-sm ring ring-primary bg-primary/80! hover:bg-primary!" onClick={() => navigate("/signup")}>
